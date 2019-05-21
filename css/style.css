@@ -1,0 +1,217 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+/*___________HEADER______________*/
+header {
+    width: 100%;
+    position: relative; 
+    padding-top: 45%; 
+}
+header:before {
+    display: block;
+    content: '';
+    width: 100%;
+}
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("../img/restaurant_RR_12.jpg") no-repeat center/cover;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;  
+    align-content: space-between;     
+}
+.logo {
+    flex-basis: 15%;
+    height: 160px;
+}
+.logo_img {
+    display: block;
+    width: 100%;
+    margin: 10px auto 10px;
+}
+.menu_top {
+    flex-basis: 69%;
+    height: 120px;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+.menu_container { 
+    flex-basis: 64%;
+    display: flex;
+    justify-content: center;
+    height: 40px;
+}
+.menu_btn {
+    border-right: 1px solid white;
+    padding: 6px;
+    flex-basis: 20%;
+    font: 600 1.1rem Arial;
+    color: white;
+}
+.menu_btn:last-of-type { border: none; }
+.menu_obj {
+    display: block;
+    text-align: center;
+}
+.menu_obj:hover, .submenu_obj:hover {
+    font-weight: 700;
+    color: rgb(221, 184, 90);
+}
+.submenu {
+    width: 150%;
+    margin:20px 0 0 25px;
+}
+.nets {
+    flex-basis: 15%;
+}
+header hgroup {
+    padding: 200px 0 20px;
+    flex-basis: 100%; 
+    text-align: center;
+    font-weight: 700;
+}
+header hgroup h2 {   
+    font-size: 1.6rem; 
+}
+header hgroup h1 {   
+    font-size: 2rem; 
+    text-transform: uppercase;
+    padding-top: 10px;  
+}
+header address {
+    margin: 15px auto 20px; 
+    flex-basis: 45%;
+    display: flex;
+    justify-content: space-between;
+    font: 600 1.2rem Arial;
+    color: white; 
+}
+.down{
+    flex-basis: 100%;
+}
+.arrow {
+    height: 20px;
+    display: block;
+    margin: 0 auto 0;
+}
+
+/*__________________MAIN________________*/
+main {
+    width: 80%;
+    margin: 0 auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.breadcrumb {
+    flex-basis: 60%;
+}
+.breadcrumb ul {
+    font: 400 1.1rem Arial;
+    padding: 10px 0 10px;
+}
+.breadcrumb li {    
+    display: inline;
+}
+.breadcrumb li+li:before {
+    padding: 8px;
+    content: "\276D";
+}
+.breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+}
+.search {
+    flex-basis: 40%;
+    padding: 10px 0 10px;
+    text-align: end;
+}
+.srch_text {
+    display: inline-block;
+    padding: 0 12px 0 18px;
+}
+.srch {
+    display: inline-block;
+    width: 200px;
+}
+aside {
+    flex-basis: 18%;
+}
+.menu_side {
+    margin-top: 40px;
+    font-size: 1.1rem;    
+}
+.menu_side li {
+    padding: 5px 0 5px 0;
+}
+.menu_side ul > ul {
+    padding-left: 30px;
+    /*display: none;*/
+}
+
+
+/*_________________CONTENT BLOCK______________*/
+
+.content_field {
+    flex-basis: 82%;
+    height: 540px;
+    overflow: auto;
+}
+.content_block {
+    padding: 80px 40px 0 20px;
+}
+.content_block:first-of-type { 
+    padding-top: 30px; 
+}
+.left_block, .right_block {
+    display: inline-block;
+    width: 50%;    
+    vertical-align: top;
+}
+.right_block {
+    width: 49%;
+}
+.content_img {
+    max-width: 100%;
+}
+.content_block h3 {
+    font: 600 1.4rem Arial;
+    text-align: center;
+}
+.content_block p {
+    padding: 20px 0 0 20px;
+    font-size: 1.1rem;
+    text-indent: 1.5rem;
+    text-align: justify;
+    line-height: 1.5rem;
+}
+.left_block p {
+    padding: 20px 20px 0 0;
+}
+
+
+
+
+/*______________________FOOTER______________*/
+footer{
+    margin-top: 25px;
+    background-color: #2e2557;
+    display: flex;
+    justify-content: center;
+}
+.footer_container {
+    flex-basis: 80%;
+}
+.contacts {
+    margin: 0 auto 4px;   
+}
+.address_item {
+    padding: 10px 0 0;
+    font: 500 0.9rem sans-serif;
+    color: antiquewhite;
+}
