@@ -7,7 +7,8 @@
 	<meta name="author" content="Taras Anpilov">
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/menus.css">
 	<link rel="stylesheet" type="text/css" href="css/media.css">
 </head>
 <body>
@@ -26,7 +27,7 @@
                         <ul class="submenu">
                             <li><a class="submenu_obj" href="#">Ukrainian cuisine</a></li>
                             <li><a class="submenu_obj" href="#">European cuisine</a></li>
-                            <li><a class="submenu_obj" href="#">Asian cuisine</a></li>
+                            <li><a class="submenu_obj" href="#">Kids menu</a></li>
                             <li><a class="submenu_obj" href="#">Drinks</a></li>
                         </ul>
                     </li>
@@ -45,7 +46,7 @@
                     </li>
                 </ul>           
             </nav>
-            <div class="nets">
+            <div class="searching">
                 <input class="srch" />
                 <button class="srch_btn">Search</button>
             </div>
@@ -75,11 +76,7 @@
                 <li><a href="#">Ukrainian cuisine</a></li>
                 <li>Varenyki</li>
             </ul>        
-        </nav>  
-        <section class="search">
-            <div class="srch_text">Search:</div>
-            <input class="srch" type="text" placeholder=" what are you looking for?" />
-        </section>
+        </nav>       
         <aside>
             <nav class="menu_side">
                 <ul>
@@ -88,7 +85,7 @@
                     <ul>
                         <li>Ukrainian cuisine</li>
                         <li>European cuisine</li>
-                        <li>Asian cuisine</li>
+                        <li>Kids menu</li>
                         <li>Drinks</li>
                     </ul>
                     <li>Gallery</li>
@@ -129,6 +126,18 @@
                     <p>With an eye toward sourcing the freshest ingredients, we change our menu seasonally to reflect the flavors found at each time of the year. By respecting the seasonality of the harvest, we are able to focus on each ingredient at its peak. This natural diversity allows us to prepare food simply, letting the quality and vibrant flavor of each ingredient shine. We harvest many of these ingredients from our garden at The Farmers Fields near Vinnitsya.</p>
                 </div>     
             </article>
+            <article class="content_block">
+                <h2 class="menus_head">Ukrainian cuisine</h2>
+                <div class="menus_container" id="menus">
+                    <div class="menus_item">
+                        <div class="dish">
+                            <span class="dish_name">Ukrainian borsch</span>
+                            <span class="dish_details">with sour cream and porcini mashrooms, 400g</span>
+                        </div>
+                        <div class="price">100 &#8372;</div>
+                    </div>                                          
+                </div>
+            </article>
         </section>
     </main>
     <footer>
@@ -137,7 +146,14 @@
                 <div class="address_item">&#9993; Ukraine, Vinnitsya, N-street, 00A</div>
                 <div class="address_item">&#x2706; 0 (800) 000 000</div>
             </address>
+            <div class="sharing">
+
+            </div>
+            <div class="cr">
+                &copy; Copyright. Taras Anpilov
+            </div>    
         </div>
     </footer>
+    <script src="js/menus.js"></script>
 </body>
 </html>  

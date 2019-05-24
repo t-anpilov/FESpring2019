@@ -1,0 +1,20 @@
+.menus_head {
+    font: 700 1.6rem Arial;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.menus_item {
+    position: relative;
+    padding: 20px 10px 5px 0;
+    border-bottom: 1px solid black;
+}
+.dish, .price {
+    display: inline-block;
+}
+.dish_name {
+    font-weight: 600;
+}
+.price {
+    position: absolute;
+    right: 0;
+}
