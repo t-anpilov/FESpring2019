@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/menus.css">
+    <link rel="stylesheet" type="text/css" href="css/reservation.css">
 	<link rel="stylesheet" type="text/css" href="css/media.css">
 </head>
 <body>
@@ -126,7 +127,7 @@
                     <p>With an eye toward sourcing the freshest ingredients, we change our menu seasonally to reflect the flavors found at each time of the year. By respecting the seasonality of the harvest, we are able to focus on each ingredient at its peak. This natural diversity allows us to prepare food simply, letting the quality and vibrant flavor of each ingredient shine. We harvest many of these ingredients from our garden at The Farmers Fields near Vinnitsya.</p>
                 </div>     
             </article>
-            <article class="content_block">
+            <section class="content_block">
                 <h2 class="menus_head">Ukrainian cuisine</h2>
                 <div class="menus_container" id="menus">
                     <div class="menus_item">
@@ -137,8 +138,39 @@
                         <div class="price">100 &#8372;</div>
                     </div>                                          
                 </div>
-            </article>
-        </section>
+            </section>
+            <section class="content_block" id="reservation">
+                <h2 class="reserv_head">Reservation</h2>
+                <form class="reserv_form">
+                    <div class="reserv_text">Make a reservation, clicking on free table</div>
+                    <div class="reserv_set">
+                        <span>From time: </span><input id="begin_time" type="time" class="time" />
+                        <span>Till time: </span><input id="end_time" type="time" class="time" />
+                    </div>
+                    <div class="reserv_set">
+                        <span>Your name: </span> <input id="client_name" />
+                    </div>
+                </form>
+                <div class="contains"> 
+                    <div class="plan">
+                        <div class="tables">
+                            <img class="table" src="img/table.png" />
+                            <img class="table" src="img/table.png" />
+                            <img class="table" src="img/table_b.png" />
+                            <img class="table" src="img/table.png" />
+                            <img class="table" src="img/table.png" />
+                            <img class="table" src="img/table.png" />
+                            <img class="empty" src="img/table.png" />
+                            <img class="empty" src="img/table.png" />
+                            <img class="empty" src="img/table.png" />
+                            <img class="empty" src="img/table.png" />
+                            <img class="table" src="img/table.png" />
+                            <img class="table" src="img/table.png" />
+                        </div>
+                    </div> 
+                </div>                            
+            </section> 
+        </section>                   
     </main>
     <footer>
         <div class="footer_container">
