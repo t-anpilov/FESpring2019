@@ -3,11 +3,17 @@ var arr = [];
 function Table(id) {
     this.id = id;
     this.slots = new Array(6);
+    var today = new Date();
     for (var i=0; i<this.slots.length; i++) {
         this.slots[i] = new Array(24);
         for (var j=0; j<this.slots[i].length; j++) {
             this.slots[i][j] = {busy: false};
         }
+        var objDay = new Date ( today.getFullYear(), today.getMonth(), today.getDate()+i );
+        var day = objDay.getDate();
+        var obj = {};
+        obj[day] = this.slots[i];
+        this.slots[i] = obj;
     };
 }
 
