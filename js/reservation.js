@@ -7,10 +7,20 @@ function Table(id) {
     for (var i=0; i<this.slots.length; i++) {
         this.slots[i] = new Array(24);
         for (var j=0; j<this.slots[i].length; j++) {
-            this.slots[i][j] = {busy: false};
+            this.slots[i][j] = {};
+            this.slots[i][j].busy = false;
+            if (j % 2 == 0 || j == 0) {
+                this.slots[i][j].beginTime = (11+j/2).toString() + ':' + '00';
+                this.slots[i][j].endTime = (11+j/2).toString() + ':' + '30';
+            } else {
+                this.slots[i][j].beginTime = (11+(j-1)/2).toString() + ':' + '30';
+                this.slots[i][j].endTime = (11+(j+1)/2).toString() + ':' + '00';
+            }
+            this.slots[i][j].person = '';
         }
         var objDay = new Date ( today.getFullYear(), today.getMonth(), today.getDate()+i );
-        var day = objDay.getDate();
+        var options = {year: 'numeric', month: 'numeric', day: 'numeric'} 
+        var day = objDay.toLocaleString('uk-UA', options);
         var obj = {};
         obj[day] = this.slots[i];
         this.slots[i] = obj;
@@ -39,13 +49,12 @@ function changeStatus(){
     var reqDate = new Date(date + 'T' + begin);
     console.log (current, reqDate);
     if (reqDate-current < 518400000 && reqDate-current > 900000) {
-        console.log('can');    
-    } else { alert( 'try' ); }
+        console.log('can reserve');    
+    } else { alert( 'try another date' ); }
     if (begin && duration && name && date) {
-        /*arr[n].busy = true;
-        arr[n].timeBegin = begin;
-        arr[n].timeEnd = end;
-        arr[n].clientName = name;*/
+        arr[n].slots[0]['25.05.2019'][0].busy = true;
+        
+        console.log(arr);
     } else { console.log('error!'); }
     
 }
