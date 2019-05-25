@@ -3,22 +3,18 @@ var arr = [];
 function Table(id) {
     this.id = id;
     this.slots = new Array(6);
-}
-
-function fillSlots(array) {
-    for (var i=0; i<array.length; i++) {
-        array[i] = new Array(24);
-        for (var j=0; j<array[i].length; j++) {
-            array[i][j] = {busy: false} ;
+    for (var i=0; i<this.slots.length; i++) {
+        this.slots[i] = new Array(24);
+        for (var j=0; j<this.slots[i].length; j++) {
+            this.slots[i][j] = {busy: false};
         }
-    }
+    };
 }
 
 (function() {
     var elems = document.getElementsByClassName('table');    
     for (var i=0; i<elems.length; i++) {
-        var table = new Table(i);
-        fillSlots(table.slots);
+        var table = new Table(i);        
         arr.push(table);
         elems[i].addEventListener('click', changeStatus);
         elems[i].setAttribute('data-id', i);
