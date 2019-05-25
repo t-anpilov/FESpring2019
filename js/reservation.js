@@ -107,8 +107,8 @@ function checkFree(event) {
 function clearPlan() {
     var elems = document.getElementsByClassName('table');    
     for (var i=0; i<elems.length; i++) {
-        if (elems[i].src == 'file:///D:/Final%20Project/img/table_b.png') {
-            elems[i].src = 'img/table.png';
+        if (elems[i].getAttribute('src') == 'img/table_b.png') {
+            elems[i].setAttribute('src', 'img/table.png');
             elems[i].addEventListener('click', changeStatus);
         }
     }    
