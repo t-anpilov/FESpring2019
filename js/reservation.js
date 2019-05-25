@@ -1,8 +1,21 @@
 var arr = [];
+(function() {
+    var elems = document.getElementsByClassName('table');    
+    for (var i=0; i<elems.length; i++) {
+        var table = new Table(i);        
+        arr.push(table);
+        elems[i].addEventListener('click', changeStatus);
+        elems[i].setAttribute('data-id', i);
+    }
+    var btn = document.getElementById('checkTable');
+    btn.addEventListener('click', checkFree)
+    console.log(arr);
+    return arr;    
+}());
 
 function Table(id) {
     this.id = id;
-    this.slots = new Array(6);
+    this.slots = new Array(7);
     var today = new Date();
     for (var i=0; i<this.slots.length; i++) {
         this.slots[i] = new Array(24);
@@ -19,25 +32,12 @@ function Table(id) {
             this.slots[i][j].person = '';
         }
         var objDay = new Date ( today.getFullYear(), today.getMonth(), today.getDate()+i );
-        var options = {year: 'numeric', month: 'numeric', day: 'numeric'} 
-        var day = objDay.toLocaleString('uk-UA', options);
+        var day = objDay.getFullYear() + '-' + addZero(objDay.getMonth()+1) + '-' + addZero(objDay.getDate());
         var obj = {};
         obj[day] = this.slots[i];
         this.slots[i] = obj;
     };
 }
-
-(function() {
-    var elems = document.getElementsByClassName('table');    
-    for (var i=0; i<elems.length; i++) {
-        var table = new Table(i);        
-        arr.push(table);
-        elems[i].addEventListener('click', changeStatus);
-        elems[i].setAttribute('data-id', i);
-    }
-    console.log(arr);
-    return arr;    
-})();
 
 function changeStatus(){
     var current = new Date();
@@ -46,20 +46,77 @@ function changeStatus(){
     var duration = document.getElementById('timing').value;
     var date = document.getElementById('reserv_date').value;
     var name = document.getElementById('client_mail').value;
-    var reqDate = new Date(date + 'T' + begin);
-    console.log (current, reqDate);
-    if (reqDate-current < 518400000 && reqDate-current > 900000) {
-        console.log('can reserve');    
-    } else { alert( 'try another date' ); }
-    if (begin && duration && name && date) {
-        arr[n].slots[0]['25.05.2019'][0].busy = true;
-        
-        console.log(arr);
-    } else { console.log('error!'); }
-    
+    var reqDate = new Date(date);
+    //console.log (current, reqDate);
+    if (reqDate-current < (7*24*60*60*1000) && reqDate-current > 0  ) {
+        console.log('can reserve'); 
+        if (begin && duration && name && date) {
+            var index;
+            var array = arr[n].slots;
+            array.forEach(function(elem, i) {
+                if (date in elem) index = i;  
+            }); 
+            if (duration == 1) {
+                arr[n].slots[index][date][begin].busy = true;
+                arr[n].slots[index][date][begin].person = name;
+            } else {
+                for (var i=0; i<(+duration); i++) {    
+                    arr[n].slots[index][date][+begin+i].busy = true;
+                    arr[n].slots[index][date][+begin+i].person = name;
+                }   
+            }
+        console.log(arr[n].slots[index][date]);    
+        alert ('reservated table #' + (n+1) + ' from ' + arr[n].slots[index][date][begin].beginTime);
+        this.removeEventListener('click', changeStatus);
+        this.src = 'img/table_b.png';    
+        } else { console.log('fill ol the fields!');      
+        } 
+    } else { 
+        alert( 'try another date' );  
+    }    
+};
+
+function checkFree(event) {
+    event.preventDefault();
+    clearPlan();
+    var current = new Date();
+    var begin = document.getElementById('begin_time').value;
+    var date = document.getElementById('reserv_date').value;
+    var reqDate = new Date(date);
+    if (reqDate-current < (7*24*60*60*1000) && reqDate-current > 0  ) { 
+        var elems = document.getElementsByClassName('table');    
+        for (var i=0; i<elems.length; i++) {
+            var index;
+            var array = arr[i].slots;
+            array.forEach(function(elem, num) {
+                if (date in elem) index = num;  
+            }); 
+            if (arr[i].slots[index][date][begin].busy === true) {
+                var idStr = 'img[data-id="'+i+'"]';
+                var tableBusy = document.querySelector(idStr);
+                tableBusy.src = 'img/table_b.png';
+                tableBusy.classList.add('busy');
+                tableBusy.removeEventListener('click', changeStatus);
+            } else { continue }
+        }
+    } else {
+        alert ('wrong date');
+    }
+} 
+
+function clearPlan() {
+    var elems = document.getElementsByClassName('table');    
+    for (var i=0; i<elems.length; i++) {
+        if (elems[i].src == 'file:///D:/Final%20Project/img/table_b.png') {
+            elems[i].src = 'img/table.png';
+            elems[i].addEventListener('click', changeStatus);
+        }
+    }    
 }
 
-
-    /*this.src = 'img/table_b.png';
-    this.classList.add('busy');
-    this.removeEventListener('click', changeStatus);*/
+function addZero(num){
+    if(num < 10 && num >= 0) {
+        num = '0' + num;
+    }
+    return num;
+}    
