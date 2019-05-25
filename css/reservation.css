@@ -4,7 +4,7 @@
     padding-bottom: 12px;
 }
 .reserv_form {    
-    width: 50%;
+    width: 80%;
     margin: 0 auto 0;
     text-align: center;
     font-size: 1.1rem;
@@ -18,24 +18,23 @@
 }
 .reserv_set {
     padding-bottom: 10px;
-    width: 66%;
+    width: 70%;
     margin: 0 auto 0;
     text-align: right;
 }
 .reserv_set:last-of-type {
     padding-bottom: 10px;
 }
-.time {
-    width: 50px;
+.time, #client_name, #reserv_date {
+    width: 80px;
+    height: 24px;
+    font-size: 1.1rem;
+}
+#reserv_date { 
+    width: 120px;
 }
 #client_name {
     width: 180px;
-}
-::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
-::-webkit-outer-spin-button {
-    -webkit-appearance: none;
 }
 .contains {
     width: 100%;
@@ -73,6 +72,9 @@
 }
 .table {
     cursor: pointer;
+}
+.busy {
+    cursor: default; 
 }
 .empty {   
     z-index: -1;

@@ -144,11 +144,44 @@
                 <form class="reserv_form">
                     <div class="reserv_text">Make a reservation, clicking on free table</div>
                     <div class="reserv_set">
-                        <span>From time: </span><input id="begin_time" type="time" class="time" />
-                        <span>Till time: </span><input id="end_time" type="time" class="time" />
+                        <span>From time: </span>                        
+                        <select id="begin_time" class="time"> 
+                            <option value="11:00">11:00</option> 
+                            <option value="11:30">11:30</option>
+                            <option value="12:00">12:00</option>
+                            <option value="12:30">12:30</option>
+                            <option value="13:00">13:00</option>
+                            <option value="13:30">13:30</option>
+                            <option value="14:00">14:00</option>
+                            <option value="14:30">14:30</option>
+                            <option value="15:00">15:00</option>
+                            <option value="15:30">15:30</option>
+                            <option value="16:00">16:00</option>
+                            <option value="16:30">16:30</option>
+                            <option value="17:00">17:00</option>
+                            <option value="17:30">17:30</option>
+                            <option value="18:00">18:00</option>
+                            <option value="18:30">18:30</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                            <option value="21:30">21:30</option>
+                            <option value="22:00">22:00</option>
+                        </select>  
+                        <span>Day: </span>
+                        <input id="reserv_date" type="date" />
                     </div>
                     <div class="reserv_set">
-                        <span>Your name: </span> <input id="client_name" />
+                        <span>Reserve for: </span> 
+                        <select id="timing" class="time">
+                            <option value="0:30">0:30 h</option> 
+                            <option value="1:00">1:00 h</option>
+                            <option value="1:30">1:30 h</option>
+                            <option value="2:00">2:00 h</option>
+                        </select>    
+                        <span>Your email: </span> <input id="client_mail" type="email" />
                     </div>
                 </form>
                 <div class="contains"> 
@@ -156,7 +189,7 @@
                         <div class="tables">
                             <img class="table" src="img/table.png" />
                             <img class="table" src="img/table.png" />
-                            <img class="table" src="img/table_b.png" />
+                            <img class="table" src="img/table.png" />
                             <img class="table" src="img/table.png" />
                             <img class="table" src="img/table.png" />
                             <img class="table" src="img/table.png" />
@@ -187,5 +220,6 @@
         </div>
     </footer>
     <script src="js/menus.js"></script>
+    <script src="js/reservation.js"></script>
 </body>
 </html>  
