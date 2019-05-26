@@ -23,11 +23,11 @@ function Table(id) {
             this.slots[i][j] = {};
             this.slots[i][j].busy = false;
             if (j % 2 == 0 || j == 0) {
-                this.slots[i][j].beginTime = (11+j/2).toString() + ':' + '00';
-                this.slots[i][j].endTime = (11+j/2).toString() + ':' + '30';
+                this.slots[i][j].from = (11+j/2).toString() + ':' + '00';
+                this.slots[i][j].to = (11+j/2).toString() + ':' + '30';
             } else {
-                this.slots[i][j].beginTime = (11+(j-1)/2).toString() + ':' + '30';
-                this.slots[i][j].endTime = (11+(j+1)/2).toString() + ':' + '00';
+                this.slots[i][j].from = (11+(j-1)/2).toString() + ':' + '30';
+                this.slots[i][j].to = (11+(j+1)/2).toString() + ':' + '00';
             }
             this.slots[i][j].person = '';
         }
@@ -47,8 +47,10 @@ function changeStatus(){
     var date = document.getElementById('reserv_date').value;
     var name = document.getElementById('client_mail').value;
     var reqDate = new Date(date);
-    //console.log (current, reqDate);
-    if (reqDate-current < (7*24*60*60*1000) && reqDate-current > 0  ) {
+    reqDate = +reqDate + 11*60*60*1000 + (begin*30*60*1000);
+    console.log(current);
+    console.log(reqDate);
+    if (reqDate-current < (7*24*60*60*1000) && reqDate-current > 15*60*1000  ) {
         console.log('can reserve'); 
         if (begin && duration && name && date) {
             var index;
@@ -66,9 +68,9 @@ function changeStatus(){
                 }   
             }
         console.log(arr[n].slots[index][date]);    
-        alert ('reservated table #' + (n+1) + ' from ' + arr[n].slots[index][date][begin].beginTime);
+        alert ('reservated table #' + (n+1) + ' from ' + arr[n].slots[index][date][begin].from);
         this.removeEventListener('click', changeStatus);
-        this.src = 'img/table_b.png';    
+        this.src = 'img/table_g.png';    
         } else { console.log('fill ol the fields!');      
         } 
     } else { 
@@ -81,8 +83,7 @@ function checkFree(event) {
     clearPlan();
     var current = new Date();
     var begin = document.getElementById('begin_time').value;
-    var date = document.getElementById('reserv_date').value;
-    var reqDate = new Date(date);
+    var date = document.getElementById('reserv_date').value;    
     if (reqDate-current < (7*24*60*60*1000) && reqDate-current > 0  ) { 
         var elems = document.getElementsByClassName('table');    
         for (var i=0; i<elems.length; i++) {
@@ -107,7 +108,7 @@ function checkFree(event) {
 function clearPlan() {
     var elems = document.getElementsByClassName('table');    
     for (var i=0; i<elems.length; i++) {
-        if (elems[i].getAttribute('src') == 'img/table_b.png') {
+        if (elems[i].getAttribute('src') == 'img/table_b.png' || elems[i].getAttribute('src') == 'img/table_b.png') {
             elems[i].setAttribute('src', 'img/table.png');
             elems[i].addEventListener('click', changeStatus);
         }
