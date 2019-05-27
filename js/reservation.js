@@ -41,16 +41,13 @@ function Table(id) {
     };
 }
 
-function changeStatus(){
-    var current = new Date();
+function changeStatus(){    
     var n = this.getAttribute('data-id'); 
     var begin = document.getElementById('begin_time').value;
     var duration = +document.getElementById('timing').value;
     var date = document.getElementById('reserv_date').value;
-    var name = document.getElementById('client_mail').value;
-    var reqDate = new Date(date);
-    reqDate = +reqDate + 11*60*60*1000 + (begin*30*60*1000);
-    if (reqDate-current < (7*24*60*60*1000) && reqDate-current > 15*60*1000 ) {
+    var name = document.getElementById('client_mail').value;    
+    if ( checkDate(date, begin) ) {
         if (begin && duration && name && date) {
             var index;
             var array = arr[n].slots;
@@ -90,14 +87,11 @@ function changeStatus(){
 };
 
 function checkFree() {
-    clearPlan();
-    var current = new Date();
+    clearPlan();    
     var begin = document.getElementById('begin_time').value;
     var date = document.getElementById('reserv_date').value;
-    var duration = +document.getElementById('timing').value;
-    var reqDate = new Date(date);
-    reqDate = +reqDate + 11*60*60*1000 + (begin*30*60*1000);   
-    if (reqDate-current < (7*24*60*60*1000) && reqDate-current > 15*60*1000 ) { 
+    var duration = +document.getElementById('timing').value;       
+    if (checkDate(date, begin) ) { 
         var elems = document.getElementsByClassName('table');    
         for (var i=0; i<elems.length; i++) {
             var index;
@@ -155,47 +149,60 @@ function addZero(num){
 }
 
 function addTitle() {
+    var begin = document.getElementById('begin_time').value;
     var date = document.getElementById('reserv_date').value;
-    var n = this.getAttribute('data-id');
-    var srchArr = arr[n].slots;
-    for (var i=0; i<srchArr.length; i++) {
-        var index;        
-        srchArr.forEach(function(elem, num) {
-            if (date in elem) index = num;  
+    if (checkDate(date, begin)) {
+        var date = document.getElementById('reserv_date').value;
+        var n = this.getAttribute('data-id');
+        var srchArr = arr[n].slots;
+        for (var i=0; i<srchArr.length; i++) {
+            var index;        
+            srchArr.forEach(function(elem, num) {
+                if (date in elem) index = num;  
+            });
+        }     
+        var obj = srchArr[index];
+        var timeArray = obj[date];
+        var times = [];
+        timeArray.forEach(function(elem) {
+            if (elem.busy == true) times.push(elem);  
         });
-    }     
-    var obj = srchArr[index];
-    var timeArray = obj[date];
-    var times = [];
-    timeArray.forEach(function(elem) {
-        if (elem.busy == true) times.push(elem);  
-    });
-    var timeStr = '';
-    times.forEach(function(elem) {
-        timeStr += elem.from + ' - ';
-        timeStr += elem.to + ';'; 
-    });
-    var sumArr = timeStr.split(';');
-    var resultArr = [];
-    for (var i=0; i<(sumArr.length-1); i++){
-        if ( (i === 0) && (sumArr[i].slice(-5) == sumArr[i+1].slice(0, 5)) ) {
-            resultArr.push(sumArr[i].slice(0, 8));    
-        } else if ( (i === 0) && (sumArr[i].slice(-5) != sumArr[i+1].slice(0, 5)) ) {
-            resultArr.push(sumArr[i] + '\n');
-        } else if ( (i !== 0) && (sumArr[i].slice(0, 5) == sumArr[i-1].slice(-5)) && (sumArr[i].slice(-5) == sumArr[i+1].slice(0, 5)) ) {
-            continue;
-        } else if ( (i !== 0) && (sumArr[i].slice(0, 5) == sumArr[i-1].slice(-5)) && (sumArr[i].slice(-5) != sumArr[i+1].slice(0, 5)) ) {
-            resultArr.push(sumArr[i].slice(-5) + '\n');
-        } else if ( (i !== 0) && (sumArr[i].slice(0, 5) != sumArr[i-1].slice(-5)) && (sumArr[i].slice(-5) == sumArr[i+1].slice(0, 5)) ) {
-            resultArr.push(sumArr[i].slice(0, 8));
-        } else if ( (i !== 0) && (sumArr[i].slice(0, 5) != sumArr[i-1].slice(-5)) && (sumArr[i].slice(-5) != sumArr[i+1].slice(0, 5)) ) {
-            resultArr.push(sumArr[i] + '\n');    
-        }      
-    }  
-    timeStr = resultArr.join('');   
-    var text = '';    
-    text = 'This day table is busy : \n' + timeStr; 
-    if (!times.length) text = 'Free for all day';   
-        
-    console.log(text);    
+        var timeStr = '';
+        times.forEach(function(elem) {
+            timeStr += elem.from + ' - ';
+            timeStr += elem.to + ';'; 
+        });
+        var sumArr = timeStr.split(';');
+        var resultArr = [];
+        for (var i=0; i<(sumArr.length-1); i++){
+            if ( (i === 0) && (sumArr[i].slice(-5) == sumArr[i+1].slice(0, 5)) ) {
+                resultArr.push(sumArr[i].slice(0, 8));    
+            } else if ( (i === 0) && (sumArr[i].slice(-5) != sumArr[i+1].slice(0, 5)) ) {
+                resultArr.push(sumArr[i] + '\n');
+            } else if ( (i !== 0) && (sumArr[i].slice(0, 5) == sumArr[i-1].slice(-5)) && (sumArr[i].slice(-5) == sumArr[i+1].slice(0, 5)) ) {
+                continue;
+            } else if ( (i !== 0) && (sumArr[i].slice(0, 5) == sumArr[i-1].slice(-5)) && (sumArr[i].slice(-5) != sumArr[i+1].slice(0, 5)) ) {
+                resultArr.push(sumArr[i].slice(-5) + '\n');
+            } else if ( (i !== 0) && (sumArr[i].slice(0, 5) != sumArr[i-1].slice(-5)) && (sumArr[i].slice(-5) == sumArr[i+1].slice(0, 5)) ) {
+                resultArr.push(sumArr[i].slice(0, 8));
+            } else if ( (i !== 0) && (sumArr[i].slice(0, 5) != sumArr[i-1].slice(-5)) && (sumArr[i].slice(-5) != sumArr[i+1].slice(0, 5)) ) {
+                resultArr.push(sumArr[i] + '\n');    
+            }      
+        }  
+        timeStr = resultArr.join('');   
+        var text = '';    
+        text = 'This day table is busy : \n' + timeStr; 
+        if (!times.length) text = 'Free for all day';   
+            
+        console.log(text);
+    }    
+}
+
+function checkDate(day, from) {
+    var current = +(new Date());        
+    var reqDate = new Date(day);
+    reqDate = +reqDate + (10-2)*60*60*1000 + (from*30*60*1000);   
+    if (reqDate-current < (7*24*60*60*1000) && reqDate-current > 15*60*1000 )  {
+        return true;
+    } 
 }
