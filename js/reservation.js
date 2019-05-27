@@ -5,10 +5,12 @@ var arr = [];
         var table = new Table(i);        
         arr.push(table);
         elems[i].addEventListener('click', changeStatus);
+        elems[i].addEventListener('mouseover', addTitle);
         elems[i].setAttribute('data-id', i);
     }
-    var btn = document.getElementById('checkTable');
-    btn.addEventListener('click', checkFree)
+    document.getElementById('begin_time').addEventListener('change', checkFree);
+    document.getElementById('reserv_date').addEventListener('change', checkFree);
+    document.getElementById('timing').addEventListener('change', checkFree);
     console.log(arr);
     return arr;    
 }());
@@ -43,62 +45,92 @@ function changeStatus(){
     var current = new Date();
     var n = this.getAttribute('data-id'); 
     var begin = document.getElementById('begin_time').value;
-    var duration = document.getElementById('timing').value;
+    var duration = +document.getElementById('timing').value;
     var date = document.getElementById('reserv_date').value;
     var name = document.getElementById('client_mail').value;
     var reqDate = new Date(date);
     reqDate = +reqDate + 11*60*60*1000 + (begin*30*60*1000);
-    console.log(current);
-    console.log(reqDate);
-    if (reqDate-current < (7*24*60*60*1000) && reqDate-current > 15*60*1000  ) {
-        console.log('can reserve'); 
+    if (reqDate-current < (7*24*60*60*1000) && reqDate-current > 15*60*1000 ) {
         if (begin && duration && name && date) {
             var index;
             var array = arr[n].slots;
             array.forEach(function(elem, i) {
                 if (date in elem) index = i;  
             }); 
-            if (duration == 1) {
+            if (duration === 1) {
                 arr[n].slots[index][date][begin].busy = true;
                 arr[n].slots[index][date][begin].person = name;
             } else {
-                for (var i=0; i<(+duration); i++) {    
-                    arr[n].slots[index][date][+begin+i].busy = true;
-                    arr[n].slots[index][date][+begin+i].person = name;
-                }   
-            }
-        console.log(arr[n].slots[index][date]);    
-        alert ('reservated table #' + (n+1) + ' from ' + arr[n].slots[index][date][begin].from);
+                try {
+                    for (var i=0; i<duration; i++) {    
+                        arr[n].slots[index][date][+begin+i].busy = true;
+                        arr[n].slots[index][date][+begin+i].person = name;
+                    }
+                } catch(e) {
+                    alert( 'Sorry, but restourant will be closed until this time.' );
+                    return;                      
+                }                   
+            } 
         this.removeEventListener('click', changeStatus);
         this.src = 'img/table_g.png';    
-        } else { console.log('fill ol the fields!');      
+        var message = (
+            'reservated table #' + (+n+1) +
+            ' on ' + date +
+            ' from ' + arr[n].slots[index][date][begin].from +
+            ' to ' + arr[n].slots[index][date][+begin + (duration-1)].to );
+        var div = document.createElement('div');
+        div.innerHTML = message;
+        document.getElementsByClassName('reserv_form')[0].appendChild(div);  
+        } else { 
+            alert('fill ol the fields!');      
         } 
     } else { 
         alert( 'try another date' );  
     }    
 };
 
-function checkFree(event) {
-    event.preventDefault();
+function checkFree() {
     clearPlan();
     var current = new Date();
     var begin = document.getElementById('begin_time').value;
-    var date = document.getElementById('reserv_date').value;    
-    if (reqDate-current < (7*24*60*60*1000) && reqDate-current > 0  ) { 
+    var date = document.getElementById('reserv_date').value;
+    var duration = +document.getElementById('timing').value;
+    var reqDate = new Date(date);
+    reqDate = +reqDate + 11*60*60*1000 + (begin*30*60*1000);   
+    if (reqDate-current < (7*24*60*60*1000) && reqDate-current > 15*60*1000 ) { 
         var elems = document.getElementsByClassName('table');    
         for (var i=0; i<elems.length; i++) {
             var index;
             var array = arr[i].slots;
             array.forEach(function(elem, num) {
                 if (date in elem) index = num;  
-            }); 
-            if (arr[i].slots[index][date][begin].busy === true) {
-                var idStr = 'img[data-id="'+i+'"]';
+            });
+            
+            if ((arr[i].slots[index][date][begin].busy === true) && (duration === 1)) {
+                changeImg(i);
+            } else if (duration > 1) {
+                try {
+                    for (var j=0; j<duration; j++) {
+                        if (arr[i].slots[index][date][+begin+j].busy === true) {
+                            changeImg(i);
+                        } 
+                    }
+                }
+                catch(e) {
+                    alert( 'Sorry, but restourant will be closed until this time.' );
+                    for(var i=0; i<elems.length; i++) {
+                        changeImg(i);
+                    }                    
+                    return;
+                }
+            }
+            function changeImg(n) {
+                var idStr = 'img[data-id="'+n+'"]';
                 var tableBusy = document.querySelector(idStr);
                 tableBusy.src = 'img/table_b.png';
                 tableBusy.classList.add('busy');
                 tableBusy.removeEventListener('click', changeStatus);
-            } else { continue }
+            }
         }
     } else {
         alert ('wrong date');
@@ -108,7 +140,7 @@ function checkFree(event) {
 function clearPlan() {
     var elems = document.getElementsByClassName('table');    
     for (var i=0; i<elems.length; i++) {
-        if (elems[i].getAttribute('src') == 'img/table_b.png' || elems[i].getAttribute('src') == 'img/table_b.png') {
+        if (elems[i].getAttribute('src') == 'img/table_b.png' || elems[i].getAttribute('src') == 'img/table_g.png') {
             elems[i].setAttribute('src', 'img/table.png');
             elems[i].addEventListener('click', changeStatus);
         }
@@ -120,4 +152,50 @@ function addZero(num){
         num = '0' + num;
     }
     return num;
-}    
+}
+
+function addTitle() {
+    var date = document.getElementById('reserv_date').value;
+    var n = this.getAttribute('data-id');
+    var srchArr = arr[n].slots;
+    for (var i=0; i<srchArr.length; i++) {
+        var index;        
+        srchArr.forEach(function(elem, num) {
+            if (date in elem) index = num;  
+        });
+    }     
+    var obj = srchArr[index];
+    var timeArray = obj[date];
+    var times = [];
+    timeArray.forEach(function(elem) {
+        if (elem.busy == true) times.push(elem);  
+    });
+    var timeStr = '';
+    times.forEach(function(elem) {
+        timeStr += elem.from + ' - ';
+        timeStr += elem.to + ';'; 
+    });
+    var sumArr = timeStr.split(';');
+    var resultArr = [];
+    for (var i=0; i<(sumArr.length-1); i++){
+        if ( (i === 0) && (sumArr[i].slice(-5) == sumArr[i+1].slice(0, 5)) ) {
+            resultArr.push(sumArr[i].slice(0, 8));    
+        } else if ( (i === 0) && (sumArr[i].slice(-5) != sumArr[i+1].slice(0, 5)) ) {
+            resultArr.push(sumArr[i] + '\n');
+        } else if ( (i !== 0) && (sumArr[i].slice(0, 5) == sumArr[i-1].slice(-5)) && (sumArr[i].slice(-5) == sumArr[i+1].slice(0, 5)) ) {
+            continue;
+        } else if ( (i !== 0) && (sumArr[i].slice(0, 5) == sumArr[i-1].slice(-5)) && (sumArr[i].slice(-5) != sumArr[i+1].slice(0, 5)) ) {
+            resultArr.push(sumArr[i].slice(-5) + '\n');
+        } else if ( (i !== 0) && (sumArr[i].slice(0, 5) != sumArr[i-1].slice(-5)) && (sumArr[i].slice(-5) == sumArr[i+1].slice(0, 5)) ) {
+            resultArr.push(sumArr[i].slice(0, 8));
+        } else if ( (i !== 0) && (sumArr[i].slice(0, 5) != sumArr[i-1].slice(-5)) && (sumArr[i].slice(-5) != sumArr[i+1].slice(0, 5)) ) {
+            resultArr.push(sumArr[i] + '\n');    
+        }      
+    }  
+    timeStr = resultArr.join('');   
+    var text = '';    
+    text = 'This day table is busy : \n' + timeStr; 
+    if (!times.length) text = 'Free for all day';   
+        
+    console.log(text);    
+}
