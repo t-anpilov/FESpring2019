@@ -72,6 +72,10 @@
     background: url(../img/table.png) no-repeat center/75%;
     cursor: pointer;
 }
+.ready {
+    background: url(../img/table_g.png) no-repeat center/75%;
+    cursor: default; 
+}
 .busy {
     background: url(../img/table_b.png) no-repeat center/75%;
     cursor: default; 

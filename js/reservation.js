@@ -99,7 +99,7 @@ function changeStatus(){
                 }                   
             } 
         this.removeEventListener('click', changeStatus);
-        this.src = 'img/table_g.png';    
+        this.classList.add('ready');   
         var message = (
             'reservated table #' + (+n+1) +
             ' on ' + date +
@@ -162,9 +162,8 @@ function checkFree() {
                 }
             }
             function changeImg(n) {
-                var idStr = 'img[data-id="'+n+'"]';
+                var idStr = '.area[data-id="'+n+'"]';
                 var tableBusy = document.querySelector(idStr);
-                tableBusy.src = 'img/table_b.png';
                 tableBusy.classList.add('busy');
                 tableBusy.removeEventListener('click', changeStatus);
             }
@@ -177,10 +176,9 @@ function checkFree() {
 function clearPlan() {
     var elems = document.getElementsByClassName('table');    
     for (var i=0; i<elems.length; i++) {
-        if (elems[i].getAttribute('src') == 'img/table_b.png' || elems[i].getAttribute('src') == 'img/table_g.png') {
-            elems[i].setAttribute('src', 'img/table.png');
-            elems[i].addEventListener('click', changeStatus);
-        }
+        elems[i].classList.remove('busy');
+        elems[i].classList.remove('ready');
+        elems[i].addEventListener('click', changeStatus);
     }    
 }
 
