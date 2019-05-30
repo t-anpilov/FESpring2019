@@ -24,12 +24,12 @@ Tables.addTables = function(){
 Tables.addPlaces();
 Tables.addTables();
 
-var arr = [];
+var TableOccup = [];
 (function() {
     var elems = document.getElementsByClassName('table');    
     for (var i=0; i<elems.length; i++) {
         var table = new Table(i);        
-        arr.push(table);
+        TableOccup.push(table);
         elems[i].addEventListener('click', changeStatus);
         elems[i].addEventListener('mouseover', addTitle);
         elems[i].setAttribute('data-id', i);
@@ -37,8 +37,8 @@ var arr = [];
     document.getElementById('begin_time').addEventListener('change', checkFree);
     document.getElementById('reserv_date').addEventListener('change', checkFree);
     document.getElementById('timing').addEventListener('change', checkFree);
-    console.log(arr);
-    return arr;    
+    console.log(TableOccup);
+    return TableOccup;    
 }());
 
 function Table(id) {
@@ -78,20 +78,20 @@ function changeStatus(){
     if ( checkDate(date, begin) ) {        
         if (begin && duration && client_name && phone && date) {
             var index;
-            var array = arr[n].slots;
+            var array = TableOccup[n].slots;
             array.forEach(function(elem, i) {
                 if (date in elem) index = i;  
             }); 
             if (duration === 1) {
-                arr[n].slots[index][date][begin].busy = true;
-                arr[n].slots[index][date][begin].person = client_name;
-                arr[n].slots[index][date][begin].phone = phone;
+                TableOccup[n].slots[index][date][begin].busy = true;
+                TableOccup[n].slots[index][date][begin].person = client_name;
+                TableOccup[n].slots[index][date][begin].phone = phone;
             } else {
                 try {
                     for (var i=0; i<duration; i++) {    
-                        arr[n].slots[index][date][+begin+i].busy = true;
-                        arr[n].slots[index][date][+begin+i].person = client_name;
-                        arr[n].slots[index][date][+begin+i].phone = phone;
+                        TableOccup[n].slots[index][date][+begin+i].busy = true;
+                        TableOccup[n].slots[index][date][+begin+i].person = client_name;
+                        TableOccup[n].slots[index][date][+begin+i].phone = phone;
                     }
                 } catch(e) {
                     alert( 'Sorry, but restourant will be closed until this time.' );                    
@@ -103,8 +103,8 @@ function changeStatus(){
         var message = (
             'reservated table #' + (+n+1) +
             ' on ' + date +
-            ' from ' + arr[n].slots[index][date][begin].from +
-            ' to ' + arr[n].slots[index][date][+begin + (duration-1)].to );
+            ' from ' + TableOccup[n].slots[index][date][begin].from +
+            ' to ' + TableOccup[n].slots[index][date][+begin + (duration-1)].to );
         var div = document.createElement('div');
         div.innerHTML = message;
         document.getElementsByClassName('reserv_form')[0].appendChild(div);
@@ -138,17 +138,17 @@ function checkFree() {
         var elems = document.getElementsByClassName('table');    
         for (var i=0; i<elems.length; i++) {
             var index;
-            var array = arr[i].slots;
+            var array = TableOccup[i].slots;
             array.forEach(function(elem, num) {
                 if (date in elem) index = num;  
             });
             
-            if ((arr[i].slots[index][date][begin].busy === true) && (duration === 1)) {
+            if ((TableOccup[i].slots[index][date][begin].busy === true) && (duration === 1)) {
                 changeImg(i);
             } else if (duration > 1) {
                 try {
                     for (var j=0; j<duration; j++) {
-                        if (arr[i].slots[index][date][+begin+j].busy === true) {
+                        if (TableOccup[i].slots[index][date][+begin+j].busy === true) {
                             changeImg(i);
                         } 
                     }
@@ -195,7 +195,7 @@ function addTitle() {
     if (checkDate(date, begin)) {
         var date = document.getElementById('reserv_date').value;
         var n = this.getAttribute('data-id');
-        var srchArr = arr[n].slots;
+        var srchArr = TableOccup[n].slots;
         for (var i=0; i<srchArr.length; i++) {
             var index;        
             srchArr.forEach(function(elem, num) {
