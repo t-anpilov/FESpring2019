@@ -1,31 +1,35 @@
 .reserv_head {
     font: 700 1.6rem Arial;
     text-align: center;
-    padding-bottom: 12px;
-    background-color: rgb(228, 220, 211);    
+    padding: 20px 0 12px;
+    border-top: 1px solid black;    
 }
-.reserv_form { 
+.reserv_form {
     text-align: center;
-    font-size: 1.1rem;
-    background-color: rgb(228, 220, 211);    
+    font-size: 1.1rem;   
 }
 .reserv_text {
     font: 500 1.2rem Arial;
-    padding: 10px 0 15px;
+    padding-bottom: 15px;
 }
 .reserv_set {
-    padding-bottom: 10px;    
+    padding-bottom: 10px;
+    text-align: justify-all; 
 }
-.time, #client_name, #reserv_date {
+.time { 
     width: 80px;
-    height: 24px;
-    font-size: 1.1rem;
+    height: 32px;
+    font-size: 1rem;
+    font-family: Arial;
 }
-#reserv_date { 
+.input_field {
+    height: 24px;   
     width: 120px;
+    padding: 2px;
+    font-size: 1rem;
 }
-#client_name {
-    width: 180px;
+#reserv_date {
+    width: 125px;
 }
 .contains {
     width: 100%;
@@ -43,9 +47,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: url(../img/plan0.png)  no-repeat center/contain;
+    background: url(../img/plan1.png)  no-repeat center/contain;
     box-sizing: border-box;
-    padding: 10% 13%;   
+    padding: 6.5% 13%;   
 }
 .tables {
     width: 100%;
@@ -55,18 +59,24 @@
     justify-content: space-between;
     align-content: space-between;
 }
-.table, .empty {
-    display: block; 
-    width: 18.75%;
-    height: 22.5%;
-    margin: 3%;
+.area {
+    width: 16.6%;
+    height: 20%;        
 }
-.table {
+.tab_num {
+    display: block;
+    width: 10%;
+    margin: 40% auto 40%;
+}
+.table{
+    background: url(../img/table.png) no-repeat center/75%;
     cursor: pointer;
 }
 .busy {
+    background: url(../img/table_b.png) no-repeat center/75%;
     cursor: default; 
 }
-.empty {   
-    z-index: -1;
+.light_it {
+    border: 1px solid red;
+    box-shadow: 0 0 4px red; 
 }

@@ -1,3 +1,29 @@
+var Tables = {};
+Tables.addPlaces = function(){
+    var hall = document.getElementsByClassName('tables')[0];
+    for (var i=0; i<30; i++){
+        var place = document.createElement('div');
+        place.classList.add('area');
+        hall.appendChild(place);
+    }
+};
+Tables.addTables = function(){
+    var places = document.getElementsByClassName('area');
+    var id = 0;
+    for (var i=0; i<places.length; i++) {
+        if ( i<9 || i==12 || i==13 || i==16 || i==17 || (i>21 && i!=26) ) {
+            places[i].classList.add('table');
+            places[i].dataset.id = id++;
+            var text = document.createElement('span');
+            text.classList.add('tab_num')
+            text.textContent = id;
+            places[i].appendChild(text);
+        } else {continue}    
+    }
+};
+Tables.addPlaces();
+Tables.addTables();
+
 var arr = [];
 (function() {
     var elems = document.getElementsByClassName('table');    
@@ -32,6 +58,7 @@ function Table(id) {
                 this.slots[i][j].to = (11+(j+1)/2).toString() + ':' + '00';
             }
             this.slots[i][j].person = '';
+            this.slots[i][j].phone = '';
         }
         var objDay = new Date ( today.getFullYear(), today.getMonth(), today.getDate()+i );
         var day = objDay.getFullYear() + '-' + addZero(objDay.getMonth()+1) + '-' + addZero(objDay.getDate());
@@ -46,9 +73,10 @@ function changeStatus(){
     var begin = document.getElementById('begin_time').value;
     var duration = +document.getElementById('timing').value;
     var date = document.getElementById('reserv_date').value;
-    var name = document.getElementById('client_mail').value;    
-    if ( checkDate(date, begin) ) {
-        if (begin && duration && name && date) {
+    var client_name = document.getElementById('client_name').value;
+    var phone = document.getElementById('phone').value;    
+    if ( checkDate(date, begin) ) {        
+        if (begin && duration && client_name && phone && date) {
             var index;
             var array = arr[n].slots;
             array.forEach(function(elem, i) {
@@ -56,15 +84,17 @@ function changeStatus(){
             }); 
             if (duration === 1) {
                 arr[n].slots[index][date][begin].busy = true;
-                arr[n].slots[index][date][begin].person = name;
+                arr[n].slots[index][date][begin].person = client_name;
+                arr[n].slots[index][date][begin].phone = phone;
             } else {
                 try {
                     for (var i=0; i<duration; i++) {    
                         arr[n].slots[index][date][+begin+i].busy = true;
-                        arr[n].slots[index][date][+begin+i].person = name;
+                        arr[n].slots[index][date][+begin+i].person = client_name;
+                        arr[n].slots[index][date][+begin+i].phone = phone;
                     }
                 } catch(e) {
-                    alert( 'Sorry, but restourant will be closed until this time.' );
+                    alert( 'Sorry, but restourant will be closed until this time.' );                    
                     return;                      
                 }                   
             } 
@@ -77,13 +107,26 @@ function changeStatus(){
             ' to ' + arr[n].slots[index][date][+begin + (duration-1)].to );
         var div = document.createElement('div');
         div.innerHTML = message;
-        document.getElementsByClassName('reserv_form')[0].appendChild(div);  
-        } else { 
-            alert('fill ol the fields!');      
+        document.getElementsByClassName('reserv_form')[0].appendChild(div);
+        var inputs = document.getElementsByClassName('input_field');
+        for (var i=0; i<inputs.length; i++){
+            inputs[i].classList.remove('light_it');
+            inputs[i].removeAttribute('placeholder');
+        }  
+        } else {             
+            var inputs = document.getElementsByClassName('input_field');
+            for (var i=0; i<inputs.length; i++){
+                if (!inputs[i].value) { 
+                    inputs[i].classList.add('light_it');
+                    inputs[i].setAttribute('placeholder', 'enter value');
+                }
+            }
         } 
-    } else { 
+    } else {
+        document.getElementById('reserv_date').classList.add('light_it'); 
+        document.getElementById('reserv_date').setAttribute('placeholder', 'enter value');
         alert( 'try another date' );  
-    }    
+    }        
 };
 
 function checkFree() {
@@ -126,7 +169,7 @@ function checkFree() {
                 tableBusy.removeEventListener('click', changeStatus);
             }
         }
-    } else {
+    } else {        
         alert ('wrong date');
     }
 } 
@@ -194,7 +237,7 @@ function addTitle() {
         text = 'This day table is busy : \n' + timeStr; 
         if (!times.length) text = 'Free for all day';   
             
-        console.log(text);
+        this.title = 'Table #' + this.getAttribute('data-id') + '\n'  + text;
     }    
 }
 

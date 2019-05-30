@@ -70,14 +70,17 @@
         </section>                   
     </header>
     <main>
-        <nav class="breadcrumb">
+        <div class="line">
+            &nbsp;
+        </div>
+        <!--<nav class="breadcrumb">
             <ul>
                 <li><a href="#">Main</a></li>
                 <li><a href="#">Menus</a></li>
                 <li><a href="#">Ukrainian cuisine</a></li>
                 <li>Varenyki</li>
             </ul>        
-        </nav>       
+        </nav>-->       
         <aside>
             <nav class="menu_side">
                 <ul>
@@ -144,7 +147,9 @@
                 <form class="reserv_form">
                     <div class="reserv_text">Make a reservation, clicking on free table</div>
                     <div class="reserv_set">
-                        <span>From time: </span>                        
+                        <label for="reserv_date">Day: </label>
+                        <input class="input_field" id="reserv_date" type="date" />
+                        <label for="begin_time">From time: </label>                        
                         <select id="begin_time" class="time"> 
                             <option value="0">11:00</option> 
                             <option value="1">11:30</option>
@@ -171,36 +176,24 @@
                             <option value="22">22:00</option>
                             <option value="23">22:30</option>
                         </select>  
-                        <span>Day: </span>
-                        <input id="reserv_date" type="date" />
-                    </div>
-                    <div class="reserv_set">
-                        <span>Reserve for: </span> 
+                        <label for="timing">Reserve for: </label> 
                         <select id="timing" class="time">
                             <option value="1">0:30 h</option> 
                             <option value="2">1:00 h</option>
                             <option value="3">1:30 h</option>
                             <option value="4">2:00 h</option>
-                        </select>                           
-                        <span>Your email: </span> <input id="client_mail" type="email" />
+                        </select>  
+                    </div>
+                    <div class="reserv_set">  
+                        <label for="client_name">Name: </label> 
+                        <input class="input_field" id="client_name" />
+                        <label for="phone">Phone number: </label> 
+                        <input class="input_field" id="phone" type="tel" />
                     </div>
                 </form>
                 <div class="contains"> 
                     <div class="plan">
-                        <div class="tables">
-                            <img class="table" src="img/table.png" title="Table #1" alt="Table #1" />
-                            <img class="table" src="img/table.png" title="Table #2" alt="Table #2" />
-                            <img class="table" src="img/table.png" title="Table #3" alt="Table #3" />
-                            <img class="table" src="img/table.png" title="Table #4" alt="Table #4" />
-                            <img class="table" src="img/table.png" title="Table #5" alt="Table #5" />
-                            <img class="table" src="img/table.png" title="Table #6" alt="Table #6" />
-                            <img class="empty" src="img/table.png" />
-                            <img class="empty" src="img/table.png" />
-                            <img class="empty" src="img/table.png" />
-                            <img class="empty" src="img/table.png" />
-                            <img class="table" src="img/table.png" title="Table #7" alt="Table #7" />
-                            <img class="table" src="img/table.png" title="Table #8" alt="Table #8" />
-                        </div>
+                        <div class="tables"></div>
                     </div> 
                 </div>                            
             </section> 
