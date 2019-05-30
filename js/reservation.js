@@ -25,6 +25,36 @@ Tables.addPlaces();
 Tables.addTables();
 
 var TableOccup = [];
+TableOccup.fill = function() {
+    var firstDay = new Date(2019, 0, 1);
+    for (var num=0; num<20; num++) {
+        TableOccup[num] = {};
+        TableOccup[num].id = num;
+        TableOccup[num].slots = new Array(365);
+        for (var i=0; i<TableOccup[num].slots.length; i++) {
+            TableOccup[num].slots[i] = new Array(24);
+            for (var j=0; j<TableOccup[num].slots[i].length; j++) {
+                TableOccup[num].slots[i][j] = {};
+                TableOccup[num].slots[i][j].busy = false;
+                if (j % 2 == 0 || j == 0) {
+                    TableOccup[num].slots[i][j].from = (11+j/2).toString() + ':' + '00';
+                    TableOccup[num].slots[i][j].to = (11+j/2).toString() + ':' + '30';
+                } else {
+                    TableOccup[num].slots[i][j].from = (11+(j-1)/2).toString() + ':' + '30';
+                    TableOccup[num].slots[i][j].to = (11+(j+1)/2).toString() + ':' + '00';
+                }
+                TableOccup[num].slots[i][j].person = '';
+                TableOccup[num].slots[i][j].phone = '';
+                var objDay = new Date ( firstDay.getFullYear(), firstDay.getMonth(), firstDay.getDate()+i );
+                var day = objDay.getFullYear() + '-' + addZero(objDay.getMonth()+1) + '-' + addZero(objDay.getDate());
+                TableOccup[num].slots[i][j].date = day;
+            } 
+        };
+    } 
+    console.log(TableOccup);   
+}
+TableOccup.fill();
+/*
 (function() {
     var elems = document.getElementsByClassName('table');    
     for (var i=0; i<elems.length; i++) {
@@ -42,32 +72,9 @@ var TableOccup = [];
 }());
 
 function Table(id) {
-    this.id = id;
-    this.slots = new Array(7);
-    var today = new Date();
-    for (var i=0; i<this.slots.length; i++) {
-        this.slots[i] = new Array(24);
-        for (var j=0; j<this.slots[i].length; j++) {
-            this.slots[i][j] = {};
-            this.slots[i][j].busy = false;
-            if (j % 2 == 0 || j == 0) {
-                this.slots[i][j].from = (11+j/2).toString() + ':' + '00';
-                this.slots[i][j].to = (11+j/2).toString() + ':' + '30';
-            } else {
-                this.slots[i][j].from = (11+(j-1)/2).toString() + ':' + '30';
-                this.slots[i][j].to = (11+(j+1)/2).toString() + ':' + '00';
-            }
-            this.slots[i][j].person = '';
-            this.slots[i][j].phone = '';
-        }
-        var objDay = new Date ( today.getFullYear(), today.getMonth(), today.getDate()+i );
-        var day = objDay.getFullYear() + '-' + addZero(objDay.getMonth()+1) + '-' + addZero(objDay.getDate());
-        var obj = {};
-        obj[day] = this.slots[i];
-        this.slots[i] = obj;
-    };
-}
 
+}
+*/
 function changeStatus(){    
     var n = this.getAttribute('data-id'); 
     var begin = document.getElementById('begin_time').value;
