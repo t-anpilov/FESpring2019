@@ -28,30 +28,30 @@ var TableOccup = [];
 TableOccup.fill = function() {
     var firstDay = new Date(2019, 0, 1);
     for (var num=0; num<20; num++) {
-        TableOccup[num] = {};
-        TableOccup[num].id = num;
-        TableOccup[num].slots = new Array(365);
-        for (var i=0; i<TableOccup[num].slots.length; i++) {
-            TableOccup[num].slots[i] = new Array(24);
-            for (var j=0; j<TableOccup[num].slots[i].length; j++) {
-                TableOccup[num].slots[i][j] = {};
-                TableOccup[num].slots[i][j].busy = false;
+        this[num] = {};
+        this[num].id = num;
+        this[num].slots = new Array(365);
+        for (var i=0; i<this[num].slots.length; i++) {
+            this[num].slots[i] = new Array(24);
+            for (var j=0; j<this[num].slots[i].length; j++) {
+                this[num].slots[i][j] = {};
+                this[num].slots[i][j].busy = false;
                 if (j % 2 == 0 || j == 0) {
-                    TableOccup[num].slots[i][j].from = (11+j/2).toString() + ':' + '00';
-                    TableOccup[num].slots[i][j].to = (11+j/2).toString() + ':' + '30';
+                    this[num].slots[i][j].from = (11+j/2).toString() + ':' + '00';
+                    this[num].slots[i][j].to = (11+j/2).toString() + ':' + '30';
                 } else {
-                    TableOccup[num].slots[i][j].from = (11+(j-1)/2).toString() + ':' + '30';
-                    TableOccup[num].slots[i][j].to = (11+(j+1)/2).toString() + ':' + '00';
+                    this[num].slots[i][j].from = (11+(j-1)/2).toString() + ':' + '30';
+                    this[num].slots[i][j].to = (11+(j+1)/2).toString() + ':' + '00';
                 }
-                TableOccup[num].slots[i][j].person = '';
-                TableOccup[num].slots[i][j].phone = '';
+                this[num].slots[i][j].person = '';
+                this[num].slots[i][j].phone = '';
                 var objDay = new Date ( firstDay.getFullYear(), firstDay.getMonth(), firstDay.getDate()+i );
                 var day = objDay.getFullYear() + '-' + addZero(objDay.getMonth()+1) + '-' + addZero(objDay.getDate());
-                TableOccup[num].slots[i][j].date = day;
+                this[num].slots[i][j].date = day;
             } 
         };
     } 
-    console.log(TableOccup);   
+    console.log(this);   
 }
 TableOccup.fill();
 /*
@@ -70,10 +70,6 @@ TableOccup.fill();
     console.log(TableOccup);
     return TableOccup;    
 }());
-
-function Table(id) {
-
-}
 */
 function changeStatus(){    
     var n = this.getAttribute('data-id'); 
