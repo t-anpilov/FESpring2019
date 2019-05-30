@@ -84,3 +84,8 @@
     border: 1px solid red;
     box-shadow: 0 0 4px red; 
 }
+.message {
+    font-size: 1rem;
+    color: rgb(53, 46, 41);
+    padding: 10px;
+}

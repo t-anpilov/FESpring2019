@@ -99,7 +99,11 @@ function changeStatus(){
                 }                   
             } 
         this.removeEventListener('click', changeStatus);
-        this.classList.add('ready');   
+        this.classList.add('ready'); 
+
+        var delMesg = document.getElementsByClassName('message')[0];
+        if (delMesg) delMesg.remove();
+       
         var message = (
             'reservated table #' + (+n+1) +
             ' on ' + date +
@@ -107,6 +111,7 @@ function changeStatus(){
             ' to ' + TableOccup[n].slots[index][date][+begin + (duration-1)].to );
         var div = document.createElement('div');
         div.innerHTML = message;
+        div.classList.add('message');
         document.getElementsByClassName('reserv_form')[0].appendChild(div);
         var inputs = document.getElementsByClassName('input_field');
         for (var i=0; i<inputs.length; i++){
