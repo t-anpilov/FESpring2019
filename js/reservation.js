@@ -1,4 +1,5 @@
 var Tables = {};
+
 Tables.addPlaces = function(){
     var hall = document.getElementsByClassName('tables')[0];
     for (var i=0; i<30; i++){
@@ -7,6 +8,7 @@ Tables.addPlaces = function(){
         hall.appendChild(place);
     }
 };
+
 Tables.addTables = function(){
     var places = document.getElementsByClassName('area');
     var id = 0;
@@ -21,56 +23,49 @@ Tables.addTables = function(){
         } else {continue}    
     }
 };
+
 Tables.addPlaces();
 Tables.addTables();
+Tables.elems = document.getElementsByClassName('table');
 
-var TableOccup = [];
+var TableOccup = {};
 TableOccup.fill = function() {
+    this.data = [];
     var firstDay = new Date(2019, 0, 1);
-    for (var num=0; num<20; num++) {
-        this[num] = {};
-        this[num].id = num;
-        this[num].slots = new Array(365);
-        for (var i=0; i<this[num].slots.length; i++) {
-            this[num].slots[i] = new Array(24);
-            for (var j=0; j<this[num].slots[i].length; j++) {
-                this[num].slots[i][j] = {};
-                this[num].slots[i][j].busy = false;
+    for (var num=0; num<20; num++) {        
+        this.data[num] = new Array(365);      
+        for (var i=0; i<this.data[num].length; i++) {
+            this.data[num][i] = {};
+            var objDay = new Date ( firstDay.getFullYear(), firstDay.getMonth(), firstDay.getDate()+i );
+            var day = objDay.getFullYear() + '-' + addZero(objDay.getMonth()+1) + '-' + addZero(objDay.getDate());            
+            this.data[num][i][day] = new Array(24);
+            for (var j=0; j<this.data[num][i][day].length; j++) {
+                this.data[num][i][day][j] = {};
+                this.data[num][i][day][j].busy = false;
                 if (j % 2 == 0 || j == 0) {
-                    this[num].slots[i][j].from = (11+j/2).toString() + ':' + '00';
-                    this[num].slots[i][j].to = (11+j/2).toString() + ':' + '30';
+                    this.data[num][i][day][j].from = (11+j/2).toString() + ':' + '00';
+                    this.data[num][i][day][j].to = (11+j/2).toString() + ':' + '30';
                 } else {
-                    this[num].slots[i][j].from = (11+(j-1)/2).toString() + ':' + '30';
-                    this[num].slots[i][j].to = (11+(j+1)/2).toString() + ':' + '00';
+                    this.data[num][i][day][j].from = (11+(j-1)/2).toString() + ':' + '30';
+                    this.data[num][i][day][j].to = (11+(j+1)/2).toString() + ':' + '00';
                 }
-                this[num].slots[i][j].person = '';
-                this[num].slots[i][j].phone = '';
-                var objDay = new Date ( firstDay.getFullYear(), firstDay.getMonth(), firstDay.getDate()+i );
-                var day = objDay.getFullYear() + '-' + addZero(objDay.getMonth()+1) + '-' + addZero(objDay.getDate());
-                this[num].slots[i][j].date = day;
+                this.data[num][i][day][j].person = '';
+                this.data[num][i][day][j].phone = '';                
             } 
         };
     } 
     console.log(this);   
 }
 TableOccup.fill();
-/*
-(function() {
-    var elems = document.getElementsByClassName('table');    
-    for (var i=0; i<elems.length; i++) {
-        var table = new Table(i);        
-        TableOccup.push(table);
-        elems[i].addEventListener('click', changeStatus);
-        elems[i].addEventListener('mouseover', addTitle);
-        elems[i].setAttribute('data-id', i);
-    }
-    document.getElementById('begin_time').addEventListener('change', checkFree);
-    document.getElementById('reserv_date').addEventListener('change', checkFree);
-    document.getElementById('timing').addEventListener('change', checkFree);
-    console.log(TableOccup);
-    return TableOccup;    
-}());
-*/
+   
+for (var i=0; i<Tables.elems.length; i++) {        
+    Tables.elems[i].addEventListener('click', changeStatus);
+    Tables.elems[i].addEventListener('mouseover', addTitle);
+}
+document.getElementById('begin_time').addEventListener('change', checkFree);
+document.getElementById('reserv_date').addEventListener('change', checkFree);
+document.getElementById('timing').addEventListener('change', checkFree);
+
 function changeStatus(){    
     var n = this.getAttribute('data-id'); 
     var begin = document.getElementById('begin_time').value;
@@ -81,20 +76,19 @@ function changeStatus(){
     if ( checkDate(date, begin) ) {        
         if (begin && duration && client_name && phone && date) {
             var index;
-            var array = TableOccup[n].slots;
-            array.forEach(function(elem, i) {
+            TableOccup.data[n].forEach(function(elem, i) {
                 if (date in elem) index = i;  
             }); 
             if (duration === 1) {
-                TableOccup[n].slots[index][date][begin].busy = true;
-                TableOccup[n].slots[index][date][begin].person = client_name;
-                TableOccup[n].slots[index][date][begin].phone = phone;
+                TableOccup.data[n][index][date][begin].busy = true;
+                TableOccup.data[n][index][date][begin].person = client_name;
+                TableOccup.data[n][index][date][begin].phone = phone;
             } else {
                 try {
                     for (var i=0; i<duration; i++) {    
-                        TableOccup[n].slots[index][date][+begin+i].busy = true;
-                        TableOccup[n].slots[index][date][+begin+i].person = client_name;
-                        TableOccup[n].slots[index][date][+begin+i].phone = phone;
+                        TableOccup.data[n][index][date][+begin+i].busy = true;
+                        TableOccup.data[n][index][date][+begin+i].person = client_name;
+                        TableOccup.data[n][index][date][+begin+i].phone = phone;
                     }
                 } catch(e) {
                     alert( 'Sorry, but restourant will be closed until this time.' );                    
@@ -110,8 +104,8 @@ function changeStatus(){
         var message = (
             'reservated table #' + (+n+1) +
             ' on ' + date +
-            ' from ' + TableOccup[n].slots[index][date][begin].from +
-            ' to ' + TableOccup[n].slots[index][date][+begin + (duration-1)].to );
+            ' from ' + TableOccup.data[n][index][date][begin].from +
+            ' to ' + TableOccup.data[n][index][date][+begin + (duration-1)].to );
         var div = document.createElement('div');
         div.innerHTML = message;
         div.classList.add('message');
@@ -142,28 +136,26 @@ function checkFree() {
     var begin = document.getElementById('begin_time').value;
     var date = document.getElementById('reserv_date').value;
     var duration = +document.getElementById('timing').value;       
-    if (checkDate(date, begin) ) { 
-        var elems = document.getElementsByClassName('table');    
-        for (var i=0; i<elems.length; i++) {
+    if (checkDate(date, begin) ) {           
+        for (var i=0; i<Tables.elems.length; i++) {
             var index;
-            var array = TableOccup[i].slots;
-            array.forEach(function(elem, num) {
+            TableOccup.data[i].forEach(function(elem, num) {
                 if (date in elem) index = num;  
             });
             
-            if ((TableOccup[i].slots[index][date][begin].busy === true) && (duration === 1)) {
+            if ((TableOccup.data[i][index][date][begin].busy === true) && (duration === 1)) {
                 changeImg(i);
             } else if (duration > 1) {
                 try {
                     for (var j=0; j<duration; j++) {
-                        if (TableOccup[i].slots[index][date][+begin+j].busy === true) {
+                        if (TableOccup.data[i][index][date][+begin+j].busy === true) {
                             changeImg(i);
                         } 
                     }
                 }
                 catch(e) {
                     alert( 'Sorry, but restourant will be closed until this time.' );
-                    for(var i=0; i<elems.length; i++) {
+                    for(var i=0; i<Tables.elems.length; i++) {
                         changeImg(i);
                     }                    
                     return;
@@ -203,9 +195,8 @@ function addTitle() {
     if (checkDate(date, begin)) {
         var date = document.getElementById('reserv_date').value;
         var n = this.getAttribute('data-id');
-        var srchArr = TableOccup[n].slots;
+        var srchArr = TableOccup.data[n];
         for (var i=0; i<srchArr.length; i++) {
-            var index;        
             srchArr.forEach(function(elem, num) {
                 if (date in elem) index = num;  
             });
@@ -251,7 +242,7 @@ function checkDate(day, from) {
     var current = +(new Date());        
     var reqDate = new Date(day);
     reqDate = +reqDate + (10-2)*60*60*1000 + (from*30*60*1000);   
-    if (reqDate-current < (7*24*60*60*1000) && reqDate-current > 15*60*1000 )  {
+    if ( reqDate-current > 15*60*1000 )  {
         return true;
     } 
 }
