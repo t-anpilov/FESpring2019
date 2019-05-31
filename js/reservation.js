@@ -105,18 +105,12 @@ function changeStatus(){
         this.removeEventListener('click', changeStatus);
         this.classList.add('ready'); 
 
-        var delMesg = document.getElementsByClassName('message')[0];
-        if (delMesg) delMesg.remove();
-       
         var message = (
             'reservated table #' + (+n+1) +
             ' on ' + date +
             ' from ' + TableOccup.data[n][index][date][begin].from +
             ' to ' + TableOccup.data[n][index][date][+begin + (duration-1)].to );
-        var div = document.createElement('div');
-        div.innerHTML = message;
-        div.classList.add('message');
-        document.getElementsByClassName('reserv_form')[0].appendChild(div);
+        document.getElementsByClassName('message')[0].textContent = message;
         var inputs = document.getElementsByClassName('input_field');
         for (var i=0; i<inputs.length; i++){
             inputs[i].classList.remove('light_it');
