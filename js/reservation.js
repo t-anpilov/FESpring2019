@@ -20,7 +20,7 @@ Tables.addTables = function(){
             text.classList.add('tab_num')
             text.textContent = id;
             places[i].appendChild(text);
-        } else {continue}    
+        } else { continue }    
     }
 };
 
@@ -124,7 +124,7 @@ function changeStatus(){
         }  
         } else {             
             var inputs = document.getElementsByClassName('input_field');
-            for (var i=0; i<inputs.length; i++){
+            for (var i=0; i<inputs.length; i++) {
                 if (!inputs[i].value) { 
                     inputs[i].classList.add('light_it');
                     inputs[i].setAttribute('placeholder', 'enter value');
@@ -254,4 +254,10 @@ function checkDate(day, from) {
     if ( reqDate-current < (n*24*60*60*1000) && reqDate-current > 15*60*1000 )  {
         return true;
     } 
+}
+
+window.onunload = function() {
+    localStorage.removeItem('timeData');
+    var jsonNew = JSON.stringify(TableOccup.data);
+    localStorage.setItem('timeData', jsonNew);
 }
