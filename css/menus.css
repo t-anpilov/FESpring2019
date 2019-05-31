@@ -5,8 +5,8 @@
 }
 .menus_item {
     position: relative;
-    padding: 20px 10px 5px 0;
-    border-bottom: 1px solid black;
+    padding: 20px 10px 2px 0;
+    border-bottom: 1px dashed black;
 }
 .dish, .price {
     display: inline-block;

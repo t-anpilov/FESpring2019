@@ -65,8 +65,10 @@
 }
 .tab_num {
     display: block;
-    width: 10%;
-    margin: 40% auto 40%;
+    text-align: center;    
+    height: 20%;
+    margin: 40% 0 40%;
+    color: rgb(110, 107, 104);
 }
 .table{
     background: url(../img/table.png) no-repeat center/75%;
