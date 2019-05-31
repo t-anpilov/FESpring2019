@@ -52,6 +52,7 @@ header:before {
     flex-basis: 20%;
     font: 600 1.1rem Arial;
     color: white;
+    position: relative;
 }
 .menu_btn:last-of-type { border: none; }
 .menu_obj {
@@ -63,8 +64,20 @@ header:before {
     color: rgb(221, 184, 90);
 }
 .submenu {
-    width: 150%;
-    margin:20px 0 0 25px;
+    width: auto;
+    position: absolute;
+    top: 40px;
+    left: 33%;
+    display: none;
+}
+.menu_btn:hover .submenu {
+    display: block;
+}
+.menu_btn:hover .submenu li {
+    padding-top: 5px;
+}
+.submenu_obj {
+    white-space: nowrap;
 }
 .searching {
     flex-basis: 15%;
