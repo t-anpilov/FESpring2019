@@ -31,9 +31,9 @@ Tables.elems = document.getElementsByClassName('table');
 var TableOccup = {};
 TableOccup.fill = function() {
     this.data = [];
-    var firstDay = new Date(2019, 0, 1);
+    var firstDay = new Date(2019, 4, 1);
     for (var num=0; num<20; num++) {        
-        this.data[num] = new Array(365);      
+        this.data[num] = new Array(92);      
         for (var i=0; i<this.data[num].length; i++) {
             this.data[num][i] = {};
             var objDay = new Date ( firstDay.getFullYear(), firstDay.getMonth(), firstDay.getDate()+i );
@@ -54,10 +54,17 @@ TableOccup.fill = function() {
             } 
         };
     } 
-    console.log(this);   
+    var json = JSON.stringify(this.data);
+    localStorage.setItem('timeData', json);
 }
-TableOccup.fill();
-   
+
+if (localStorage.getItem('timeData')) {
+    TableOccup.data = JSON.parse(localStorage.getItem('timeData'));   
+} else {
+    TableOccup.fill();
+}
+console.log(TableOccup.data); 
+
 for (var i=0; i<Tables.elems.length; i++) {        
     Tables.elems[i].addEventListener('click', changeStatus);
     Tables.elems[i].addEventListener('mouseover', addTitle);
@@ -240,9 +247,11 @@ function addTitle() {
 
 function checkDate(day, from) {
     var current = +(new Date());        
-    var reqDate = new Date(day);
-    reqDate = +reqDate + (10-2)*60*60*1000 + (from*30*60*1000);   
-    if ( reqDate-current > 15*60*1000 )  {
+    var reqDate = new Date(day);    
+    reqDate = +reqDate + (10-2)*60*60*1000 + (from*30*60*1000);
+    var lastday = new Date(2019, 6, 31);
+    var n = Math.ceil((+lastday-current)/(24*60*60*1000)) + 1;
+    if ( reqDate-current < (n*24*60*60*1000) && reqDate-current > 15*60*1000 )  {
         return true;
     } 
 }
