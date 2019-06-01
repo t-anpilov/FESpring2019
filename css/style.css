@@ -18,7 +18,7 @@ header:before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url("../img/restaurant_RR_12.jpg") no-repeat center/cover;
+    background: url("../img/restaurant_RR_14.jpg") no-repeat center/cover;
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;  
@@ -67,7 +67,7 @@ header:before {
     width: auto;
     position: absolute;
     top: 40px;
-    left: 33%;
+    left: 20%;
     display: none;
 }
 .menu_btn:hover .submenu {
@@ -172,12 +172,25 @@ aside {
     margin-top: 40px;
     font-size: 1.1rem;    
 }
-.menu_side li {
+.vertical_menu li {
     padding: 5px 0 5px 0;
 }
-.menu_side ul > ul {
+.vertical_menu ul {
     padding-left: 30px;
-    /*display: none;*/
+    display: none;
+}
+#menus_out:hover ~ #menus_types {
+    display: block;    
+}
+#gallery_out:hover ~ #gallery_types {
+    display: block;
+}
+#menus_types:hover, #gallery_types:hover {
+    display: block; 
+}
+.vertical_menu a:hover {
+    color: rgb(39, 59, 172);
+    font-weight: 600;
 }
 
 

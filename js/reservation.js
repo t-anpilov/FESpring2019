@@ -17,7 +17,7 @@ Tables.addTables = function(){
             places[i].classList.add('table');
             places[i].dataset.id = id++;
             var text = document.createElement('span');
-            text.classList.add('tab_num')
+            text.classList.add('tab_num');
             text.textContent = id;
             places[i].appendChild(text);
         } else { continue }    
@@ -31,7 +31,7 @@ Tables.elems = document.getElementsByClassName('table');
 var TableOccup = {};
 TableOccup.fill = function() {
     this.data = [];
-    var firstDay = new Date(2019, 4, 1);
+    var firstDay = new Date(2019, 5, 1);
     for (var num=0; num<20; num++) {        
         this.data[num] = new Array(92);      
         for (var i=0; i<this.data[num].length; i++) {

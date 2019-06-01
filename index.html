@@ -21,7 +21,7 @@
             <nav class="menu_top">
                 <ul class="menu_container">
                     <li class="menu_btn">
-                        <a class="menu_obj" href="#">Main</a>
+                        <a class="menu_obj" href="#about">Main</a>
                     </li>
                     <li class="menu_btn">
                         <a class="menu_obj" href="#">Menus</a>
@@ -78,31 +78,30 @@
                 <li><a href="#">Main</a></li>
                 <li><a href="#">Menus</a></li>
                 <li><a href="#">Ukrainian cuisine</a></li>
-                <li>Varenyki</li>
             </ul>        
         </nav>-->       
         <aside>
             <nav class="menu_side">
-                <ul>
-                    <li>Main</li>
-                    <li>Menus</li>
-                    <ul>
-                        <li>Ukrainian cuisine</li>
-                        <li>European cuisine</li>
-                        <li>Kids menu</li>
-                        <li>Drinks</li>
+                <ul class="vertical_menu">
+                    <li><a href="#">Main</a></li>
+                    <li id="menus_out"><a href="#menus">Menus</a></li>
+                    <ul id="menus_types">
+                        <li><a href="#">Ukrainian cuisine</a></li>
+                        <li><a href="#">European cuisine</a></li>
+                        <li><a href="#">Kids menu</a></li>
+                        <li><a href="#">Drinks</a></li>
                     </ul>
-                    <li>Gallery</li>
-                    <ul>
-                        <li>Dishes</li>
-                        <li>Events</li>
+                    <li id="gallery_out"><a href="#">Gallery</a></li>
+                    <ul id="gallery_types">
+                        <li><a href="#">Dishes</a></li>
+                        <li><a href="#">Events</a></li>
                     </ul>
-                    <li>Reservations</li>
-                    <li>Contact</li>
+                    <li><a href="#">Reservations</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
         </aside>
-        <section class="content_field">
+        <section class="content_field" id="about">
             <article class="content_block">
                 <div class="left_block">
                     <img class="content_img" src="img/Restaurant-Design-1.jpg" alt="restaurant interior design" />
@@ -130,11 +129,34 @@
                     <p>With an eye toward sourcing the freshest ingredients, we change our menu seasonally to reflect the flavors found at each time of the year. By respecting the seasonality of the harvest, we are able to focus on each ingredient at its peak. This natural diversity allows us to prepare food simply, letting the quality and vibrant flavor of each ingredient shine. We harvest many of these ingredients from our garden at The Farmers Fields near Vinnitsya.</p>
                 </div>     
             </article>
-            <section class="content_block">
-                <h2 class="menus_head">Ukrainian cuisine</h2>
-                <div class="menus_container" id="menus">
-                                                              
-                </div>
+            <section class="content_block menus">
+                <h2 class="menus_head" id="menus">Menus</h2>
+                <div class="menus_tabs">
+                    <div class="menus_container" id="ukr_cousine">
+                        <input type="radio" id="ukr_show" name="menus_select" checked />
+                        <label class="menus_title" for="ukr_show">Ukrainian cuisine</label>                        
+                        <div class="menus_block" id="ukr_menus">                                                              
+                        </div>
+                    </div>
+                    <div class="menus_container" id="eur_cousine">
+                        <input type="radio" id="eur_show" name="menus_select" />
+                        <label class="menus_title" for="eur_show">European cuisine</label>                        
+                        <div class="menus_block" id="eur_menus">                                                              
+                        </div>
+                    </div>
+                    <div class="menus_container" id="kids_cousine">
+                        <input type="radio" id="kids_show" name="menus_select" />
+                        <label class="menus_title" for="kids_show">Kids menu</label>                        
+                        <div class="menus_block" id="kids_menus">                                                              
+                        </div>
+                    </div>
+                    <div class="menus_container" id="drink_cousine">
+                        <input type="radio" id="drink_show" name="menus_select" />
+                        <label class="menus_title" for="drink_show">Drinks</label>                        
+                        <div class="menus_block" id="drink_menus">                                                              
+                        </div>
+                    </div>
+                </div>                    
             </section>
             <section class="content_block" id="reservation">
                 <h2 class="reserv_head">Reservation</h2>

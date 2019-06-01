@@ -1,8 +1,52 @@
+.menus {
+    height: auto;
+}
 .menus_head {
     font: 700 1.6rem Arial;
     text-align: center;
     padding-bottom: 20px;
 }
+.menus_tabs {
+    position: relative;
+    padding-top: 20px;    
+}
+.menus_container, .menus_title {
+    display: inline-block;
+}
+.menus_title {
+    background-color: #ccc;
+    width: 200px;
+    padding: 10px 0 10px;
+    text-align: center;
+    border: 1px solid black;
+    border-bottom: none;
+    font-size: 1.2rem;
+} 
+.menus_block {
+    position: absolute;
+    border: 1px solid black;
+    padding: 10px;
+    left: 0;
+    width: calc(100% - 20px);
+    display: none;
+}   
+.menus_container :checked + .menus_title {
+    position: relative;
+    background-color: #fff;
+    top: 1px;
+    z-index: 1; 
+    font-weight: 800;
+}
+.menus_container :checked ~ .menus_block {
+    display: block;
+}
+.menus_container input[type="radio"] { 
+    display: none;
+}
+.menus_block {
+    display: none; 
+}
+
 .menus_item {
     position: relative;
     padding: 20px 10px 2px 0;

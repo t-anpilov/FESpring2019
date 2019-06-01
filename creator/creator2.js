@@ -29,6 +29,7 @@ document.getElementById('add').addEventListener('click', inputArray);
 document.getElementById('saver').onclick = function() {
     var menuData = JSON.stringify(menus);
     console.log(menuData);
+    localStorage.setItem(prompt('name_menus'), menuData);
     var csv = menuData;
     var csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
     this.href = csvData;
