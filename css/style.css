@@ -52,7 +52,7 @@ header:before {
     flex-basis: 20%;
     font: 600 1.1rem Arial;
     color: white;
-    position: relative;
+    position: relative;;
 }
 .menu_btn:last-of-type { border: none; }
 .menu_obj {
@@ -62,6 +62,7 @@ header:before {
 .menu_obj:hover, .submenu_obj:hover {
     font-weight: 700;
     color: rgb(221, 184, 90);
+    transition: 0.4s ease;
 }
 .submenu {
     width: auto;
@@ -103,8 +104,34 @@ header:before {
 	color: white;
 	text-align: center;
 }
+.move {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    margin-top: -15px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: 0.6s ease;
+    border-radius: 50%;
+    z-index: 1;
+}
+#next {
+    right: 10px;
+}
+#prev {
+    left: 10px;
+}
+.move:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
 header hgroup {
-    padding: 200px 0 20px;
+    padding: 160px 0 20px;
     flex-basis: 100%; 
     text-align: center;
     font-weight: 700;
@@ -129,10 +156,23 @@ header address {
     flex-basis: 100%;
 }
 #arrow {
-    height: 25px;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: 0.6s ease;
+    border-radius: 50%;
+    z-index: 1;
     margin: 0 auto 0;
     cursor: pointer;
+    transform: rotate(90deg); 
+}
+#arrow:hover {
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 /*__________________MAIN________________*/

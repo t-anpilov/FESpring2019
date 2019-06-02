@@ -71,7 +71,6 @@ function openTab(event) {
     let target = event.target;
     if (target.tagName == 'A') {
         var elemId = event.target.dataset.id;
-        console.log(elemId);
         document.getElementById(elemId).checked = true;        
     }
 }
