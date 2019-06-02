@@ -32,7 +32,11 @@ function sliding() {
         if (i<imgArray.length) {            
             container.style.backgroundImage = 'url' + imgArray[i]; 
             i++;           
-        }  else i = 0;  
-    }, 1000);
+        }  else {
+            i = 1;
+            container.style.backgroundImage = 'url' + imgArray[0];    
+        }
+    }, 4000);
 }
+
 sliding();
