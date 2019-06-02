@@ -18,7 +18,7 @@ header:before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url("../img/restaurant_RR_14.jpg") no-repeat center/cover;
+    background: url("../img/restaurant_RR_122221.jpg") no-repeat center/cover;
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;  
@@ -128,8 +128,8 @@ header address {
 .down{
     flex-basis: 100%;
 }
-.arrow {
-    height: 20px;
+#arrow {
+    height: 25px;
     display: block;
     margin: 0 auto 0;
     cursor: pointer;
@@ -143,7 +143,7 @@ main {
     flex-wrap: wrap;
     justify-content: center;
 }
-.line {
+#line {
     flex-basis: 100%;
     height: 20px;
 }

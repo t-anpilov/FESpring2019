@@ -51,7 +51,7 @@ for (let i=0; i<elems.length; i++) {
     }
 }
 
-var next = document.getElementById('reservation');
+var next = document.getElementsByClassName(' reserv_block')[0];
 next.style.paddingTop = height + 'px';
 
 var radioBtns = document.getElementsByName('menus_select');
@@ -60,4 +60,18 @@ for (let i=0; i<radioBtns.length; i++) {
         height = radioBtns[i].nextElementSibling.nextElementSibling.offsetHeight;
         next.style.paddingTop = height + 'px';
     });
+}
+
+var openers = document.getElementsByClassName('opener');
+for (let i=0; i<openers.length; i++) {
+    openers[i].addEventListener('click', openTab);
+}
+
+function openTab(event) {
+    let target = event.target;
+    if (target.tagName == 'A') {
+        var elemId = event.target.dataset.id;
+        console.log(elemId);
+        document.getElementById(elemId).checked = true;        
+    }
 }

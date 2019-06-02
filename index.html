@@ -24,26 +24,26 @@
                         <a class="menu_obj" href="#about">Main</a>
                     </li>
                     <li class="menu_btn">
-                        <a class="menu_obj" href="#">Menus</a>
-                        <ul class="submenu">
-                            <li><a class="submenu_obj" href="#">Ukrainian cuisine</a></li>
-                            <li><a class="submenu_obj" href="#">European cuisine</a></li>
-                            <li><a class="submenu_obj" href="#">Kids menu</a></li>
-                            <li><a class="submenu_obj" href="#">Drinks</a></li>
+                        <a class="menu_obj" href="#menus">Menus</a>
+                        <ul class="submenu opener">
+                            <li><a class="submenu_obj" href="#ukr_cousine" data-id="ukr_show">Ukrainian cuisine</a></li>
+                            <li><a class="submenu_obj" href="#eur_cousine" data-id="eur_show">European cuisine</a></li>
+                            <li><a class="submenu_obj" href="#kids_cousine" data-id="kids_show">Kids menu</a></li>
+                            <li><a class="submenu_obj" href="#drink_cousine" data-id="drink_show">Drinks</a></li>
                         </ul>
                     </li>
                     <li class="menu_btn">
                         <a class="menu_obj" href="#">Gallery</a>
-                        <ul class="submenu">
+                        <ul class="submenu opener">
                             <li><a class="submenu_obj" href="#">Dishes</a></li>
                             <li><a class="submenu_obj" href="#">Events</a></li>
                         </ul>
                     </li>
                     <li class="menu_btn">
-                        <a class="menu_obj" href="#">Reservations</a>
+                        <a class="menu_obj" href="#reservation">Reservation</a>
                     </li>
                     <li class="menu_btn">
-                        <a class="menu_obj" href="#">Contact</a>
+                        <a class="menu_obj" href="#contact">Contact</a>
                     </li>
                 </ul>           
             </nav>
@@ -60,7 +60,7 @@
                 </h1> 
             </hgroup>           
             <div class="down">
-                    <img class="arrow" src="img/arrow11.png" alt="down">
+                <a href="#line"><img id="arrow" src="img/arrow11.png" alt="down"></a>
             </div>
             <address class="rest_inf">
                 <div>Vinnitsya, N-street, 00A</div>
@@ -70,43 +70,36 @@
         </section>                   
     </header>
     <main>
-        <div class="line">
+        <div id="line">
             &nbsp;
-        </div>
-        <!--<nav class="breadcrumb">
-            <ul>
-                <li><a href="#">Main</a></li>
-                <li><a href="#">Menus</a></li>
-                <li><a href="#">Ukrainian cuisine</a></li>
-            </ul>        
-        </nav>-->       
+        </div>       
         <aside>
             <nav class="menu_side">
                 <ul class="vertical_menu">
-                    <li><a href="#">Main</a></li>
+                    <li><a href="#about">Main</a></li>
                     <li id="menus_out"><a href="#menus">Menus</a></li>
-                    <ul id="menus_types">
-                        <li><a href="#">Ukrainian cuisine</a></li>
-                        <li><a href="#">European cuisine</a></li>
-                        <li><a href="#">Kids menu</a></li>
-                        <li><a href="#">Drinks</a></li>
+                    <ul id="menus_types" class="opener">
+                        <li><a href="#ukr_cousine" data-id="ukr_show">Ukrainian cuisine</a></li>
+                        <li><a href="#eur_cousine" data-id="eur_show">European cuisine</a></li>
+                        <li><a href="#kids_cousine" data-id="kids_show">Kids menu</a></li>
+                        <li><a href="#drink_cousine" data-id="drink_show">Drinks</a></li>
                     </ul>
                     <li id="gallery_out"><a href="#">Gallery</a></li>
-                    <ul id="gallery_types">
+                    <ul id="gallery_types" class="opener">
                         <li><a href="#">Dishes</a></li>
                         <li><a href="#">Events</a></li>
                     </ul>
-                    <li><a href="#">Reservations</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#reservation">Reservation</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </aside>
-        <section class="content_field" id="about">
+        <section class="content_field">
             <article class="content_block">
                 <div class="left_block">
                     <img class="content_img" src="img/Restaurant-Design-1.jpg" alt="restaurant interior design" />
                 </div>
-                <div class="right_block">                      
+                <div class="right_block" id="about">                      
                     <h3>About us</h3>
                     <p>Two-story “R&R” is located in the heart of Vinnitsya, on the bank of South Buh. From the windows there is a wonderful view. And inside the restaurant every detail of the interior, every menu item is made with love and sincere desire to surprise with taste. The second flour of the restaurant is banquet hall withoverlooking the river and private hall. The “Road & River” supports the good traditions of family holiday – on weekends there will be held children’s entertainment programs, and the restaurant has also kid’s corner.</p>
                 </div>     
@@ -158,8 +151,8 @@
                     </div>
                 </div>                    
             </section>
-            <section class="content_block" id="reservation">
-                <h2 class="reserv_head">Reservation</h2>
+            <section class="content_block reserv_block">
+                <h2 class="reserv_head" id="reservation">Reservation</h2>
                 <form class="reserv_form">
                     <div class="reserv_text">Make a reservation, clicking on free table</div>
                     <div class="reserv_set">
@@ -222,14 +215,14 @@
                 <div class="address_item">&#9993; Ukraine, Vinnitsya, N-street, 00A</div>
                 <div class="address_item">&#x2706; 0 (800) 000 000</div>
             </address>
-            <div class="sharing">
-
+            <div>
             </div>
             <div class="cr">
                 &copy; Copyright. Taras Anpilov
             </div>    
         </div>
     </footer>
+    <script src="js/slider.js"></script>
     <script src="js/menus.js"></script>
     <script src="js/reservation.js"></script>
 </body>
