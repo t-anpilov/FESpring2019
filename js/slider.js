@@ -4,12 +4,12 @@ const next = document.getElementById('next');
 const arrow = document.getElementById('arrow');
 const newTop = document.getElementById('line');
 const imgArray = [
-    '(img/slider/slide-1.jpg)',
-    '(img/slider/slide-2.jpg)',
-    '(img/slider/slide-3.jpg)',
-    '(img/slider/slide-4.jpg)',
-    '(img/slider/slide-5.jpg)',
-    '(img/slider/slide-5.jpg)',
+    'url("img/slider/slide-1.jpg")',
+    'url("img/slider/slide-2.jpg")',
+    'url("img/slider/slide-3.jpg")',
+    'url("img/slider/slide-4.jpg")',
+    'url("img/slider/slide-5.jpg")',
+    'url("img/slider/slide-6.jpg")',
 ];
 
 arrow.addEventListener('click', scrollTo);
@@ -26,17 +26,49 @@ function scrollTo() {
     }, 15);
 }
 
+next.addEventListener('click', changeNext);
+function changeNext() {
+    let index;
+    if (!container.getAttribute('style')) {
+        index = 0;
+    } else {
+        let currentImg = container.getAttribute('style').slice(18, -1);    
+        index = imgArray.indexOf(currentImg);
+    }
+    if (index != 5) {
+        container.style.backgroundImage = imgArray[index+1]; 
+    } else {
+        container.style.backgroundImage = imgArray[0];
+    }  
+}
+
+prev.addEventListener('click', changePrev);
+function changePrev() {
+    let index;
+    if (!container.getAttribute('style')) {
+        index = 0;
+    } else {
+        let currentImg = container.getAttribute('style').slice(18, -1);    
+        index = imgArray.indexOf(currentImg);
+    }
+    if (index !== 0) {
+        container.style.backgroundImage = imgArray[index-1]; 
+    } else {
+        container.style.backgroundImage = imgArray[5];
+    }  
+}
+
 function sliding() {
     let i = 1;
     setInterval(() => {
         if (i<imgArray.length) {            
-            container.style.backgroundImage = 'url' + imgArray[i]; 
+            container.style.backgroundImage = imgArray[i]; 
             i++;           
         }  else {
             i = 1;
-            container.style.backgroundImage = 'url' + imgArray[0];    
+            container.style.backgroundImage = imgArray[0];    
         }
-    }, 4000);
+    }, 5000);
 }
 
 sliding();

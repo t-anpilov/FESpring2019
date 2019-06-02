@@ -6,6 +6,7 @@ header {
     width: 100%;
     position: relative; 
     padding-top: 45%; 
+    color: white;
 }
 header:before {
     display: block;
@@ -17,16 +18,17 @@ header:before {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    /*background: url("../img/restaurant_RR_122221.jpg") no-repeat center/cover;*/
-    background-image: url(../img/restaurant_RR_122221.jpg);
+    bottom: 0;    
+    background-image: url(../img/slider/slide-1.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     display: flex;
     flex-flow: wrap;
     justify-content: space-between;  
-    align-content: space-between;     
+    align-content: space-between;
+    -webkit-transition: background-image 0.4s ease-in-out;
+    transition: background-image 0.4s ease-in-out;     
 }
 .logo {
     flex-basis: 15%;
@@ -55,7 +57,6 @@ header:before {
     padding: 6px;
     flex-basis: 20%;
     font: 600 1.1rem Arial;
-    color: white;
     position: relative;;
 }
 .menu_btn:last-of-type { border: none; }
@@ -91,8 +92,7 @@ header:before {
 .srch_btn {
     display: inline-block;
     padding: 3px;
-    width: 30%;
-    color: white;    
+    width: 30%;   
     background-color: rgba(172, 162, 151, 0.246);
     border: 1px white solid;
     border-radius: 5px;
@@ -105,7 +105,6 @@ header:before {
 	background-color: transparent;
 	border-bottom: 1px solid white;
 	outline: none;
-	color: white;
 	text-align: center;
 }
 .move {
@@ -118,7 +117,6 @@ header:before {
     width: 50px;
     height: 50px;
     margin-top: -15px;
-    color: white;
     font-weight: bold;
     font-size: 1.5rem;
     transition: 0.6s ease;
@@ -149,12 +147,15 @@ header hgroup h1 {
     padding-top: 10px;  
 }
 header address {
-    margin: 15px auto 20px; 
-    flex-basis: 45%;
+    margin: 15px auto 25px; 
+    flex-basis: 65%;
     display: flex;
     justify-content: space-between;
-    font: 600 1.2rem Arial;
-    color: white; 
+    font: 600 1.3rem Arial;
+}
+.rest_inf {
+    flex-basis: 30%;
+    text-align: center;
 }
 .down{
     flex-basis: 100%;
@@ -165,7 +166,6 @@ header address {
     align-items: center;
     width: 50px;
     height: 50px;
-    color: white;
     font-weight: bold;
     font-size: 1.5rem;
     transition: 0.6s ease;
