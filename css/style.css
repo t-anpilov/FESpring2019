@@ -183,7 +183,7 @@ header address {
 
 /*__________________MAIN________________*/
 main {
-    width: 80%;
+    width: 85%;
     margin: 0 auto 0;
     display: flex;
     flex-wrap: wrap;
@@ -194,7 +194,7 @@ main {
     height: 20px;
 }
 aside {
-    flex-basis: 18%;
+    flex-basis: 16%;
 }
 .menu_side {
     margin-top: 40px;
@@ -224,7 +224,7 @@ aside {
 /*_________________CONTENT BLOCK______________*/
 
 .content_field {
-    flex-basis: 82%;
+    flex-basis: 84%;
     height: 720px;
     overflow: auto;
 }

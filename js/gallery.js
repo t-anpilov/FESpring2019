@@ -4,9 +4,13 @@ for (let i=1; i<dishesNum+1; i++) {
     let name = 'img/dishes/' + i + '.jpg';
     dishesPics.push(name);
 }
-console.log(dishesPics);
-const eventPics = [];
 
+const eventPics = [];
+var eventNum = 25;
+for (let i=1; i<eventNum+1; i++) {
+    let name = 'img/event/' + i + '.jpg';
+    eventPics.push(name);
+}
 
 function addPics(srcArray, target) {
     const container = document.getElementById(target);
@@ -19,3 +23,4 @@ function addPics(srcArray, target) {
 }
 
 addPics(dishesPics, 'dishes_pics');
+addPics(eventPics, 'event_pics');

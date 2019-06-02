@@ -39,8 +39,8 @@
                     <li class="menu_btn">
                         <a class="menu_obj" href="#gallery">Gallery</a>
                         <ul class="submenu opener">
-                            <li><a class="submenu_obj" href="#">Dishes</a></li>
-                            <li><a class="submenu_obj" href="#">Events</a></li>
+                            <li><a class="submenu_obj" href="#dishes" data-id="dishes_show">Dishes</a></li>
+                            <li><a class="submenu_obj" href="#event" data-id="event_show">Events</a></li>
                         </ul>
                     </li>
                     <li class="menu_btn">
@@ -90,8 +90,8 @@
                     <li><a href="#reservation">Reservation</a></li>
                     <li id="gallery_out"><a href="#gallery">Gallery</a></li>
                     <ul id="gallery_types" class="opener">
-                        <li><a href="#">Dishes</a></li>
-                        <li><a href="#">Events</a></li>
+                        <li><a href="#dishes" data-id="dishes_show">Dishes</a></li>
+                        <li><a href="#event" data-id="event_show">Events</a></li>
                     </ul>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
@@ -217,12 +217,25 @@
                         <input type="radio" id="dishes_show" name="gallery_select" checked />
                         <label class="gallery_title" for="dishes_show">Dishes</label>                        
                         <div class="gallery_block" id="dishes_pics">
+                            <div class="pagination">
+                                <div class="page_num">1</div>
+                                <div class="page_num">2</div>
+                                <div class="page_num">3</div>
+                                <div class="page_num">4</div>
+                                <div class="page_num">View all</div>
+                            </div>
                         </div>
                     </div>
                     <div class="gallery_container" id="event">
                         <input type="radio" id="event_show" name="gallery_select" />
                         <label class="gallery_title" for="event_show">Events</label>                        
                         <div class="gallery_block" id="event_pics"> 
+                            <div class="pagination">
+                                <div class="page_num">1</div>
+                                <div class="page_num">2</div>
+                                <div class="page_num">3</div>
+                                <div class="page_num">View all</div>
+                            </div>
                         </div>
                     </div> 
                 </div>
