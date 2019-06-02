@@ -51,14 +51,14 @@ for (let i=0; i<elems.length; i++) {
     }
 }
 
-var next = document.getElementsByClassName(' reserv_block')[0];
-next.style.paddingTop = height + 'px';
+var upper = document.getElementsByClassName(' reserv_block')[0];
+upper.style.paddingTop = height + 'px';
 
 var radioBtns = document.getElementsByName('menus_select');
 for (let i=0; i<radioBtns.length; i++) {
     radioBtns[i].addEventListener('change', () => {
         height = radioBtns[i].nextElementSibling.nextElementSibling.offsetHeight;
-        next.style.paddingTop = height + 'px';
+        upper.style.paddingTop = height + 'px';
     });
 }
 
