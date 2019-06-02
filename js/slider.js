@@ -58,17 +58,8 @@ function changePrev() {
     }  
 }
 
-function sliding() {
-    let i = 1;
-    setInterval(() => {
-        if (i<imgArray.length) {            
-            container.style.backgroundImage = imgArray[i]; 
-            i++;           
-        }  else {
-            i = 1;
-            container.style.backgroundImage = imgArray[0];    
-        }
-    }, 5000);
+function sliding() {    
+    setInterval( () => {changeNext()}, 5000);
 }
 
 sliding();

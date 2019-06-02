@@ -10,7 +10,8 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/menus.css">
     <link rel="stylesheet" type="text/css" href="css/reservation.css">
-	<link rel="stylesheet" type="text/css" href="css/media.css">
+    <link rel="stylesheet" type="text/css" href="css/gallery.css">
+    <link rel="stylesheet" type="text/css" href="css/media.css">
 </head>
 <body>
     <header>
@@ -31,16 +32,16 @@
                             <li><a class="submenu_obj" href="#kids_cousine" data-id="kids_show">Kids menu</a></li>
                             <li><a class="submenu_obj" href="#drink_cousine" data-id="drink_show">Drinks</a></li>
                         </ul>
+                    </li>                    
+                    <li class="menu_btn">
+                        <a class="menu_obj" href="#reservation">Reservation</a>
                     </li>
                     <li class="menu_btn">
-                        <a class="menu_obj" href="#">Gallery</a>
+                        <a class="menu_obj" href="#gallery">Gallery</a>
                         <ul class="submenu opener">
                             <li><a class="submenu_obj" href="#">Dishes</a></li>
                             <li><a class="submenu_obj" href="#">Events</a></li>
                         </ul>
-                    </li>
-                    <li class="menu_btn">
-                        <a class="menu_obj" href="#reservation">Reservation</a>
                     </li>
                     <li class="menu_btn">
                         <a class="menu_obj" href="#contact">Contact</a>
@@ -85,13 +86,13 @@
                         <li><a href="#eur_cousine" data-id="eur_show">European cuisine</a></li>
                         <li><a href="#kids_cousine" data-id="kids_show">Kids menu</a></li>
                         <li><a href="#drink_cousine" data-id="drink_show">Drinks</a></li>
-                    </ul>
-                    <li id="gallery_out"><a href="#">Gallery</a></li>
+                    </ul>                    
+                    <li><a href="#reservation">Reservation</a></li>
+                    <li id="gallery_out"><a href="#gallery">Gallery</a></li>
                     <ul id="gallery_types" class="opener">
                         <li><a href="#">Dishes</a></li>
                         <li><a href="#">Events</a></li>
                     </ul>
-                    <li><a href="#reservation">Reservation</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -124,8 +125,8 @@
                     <p>With an eye toward sourcing the freshest ingredients, we change our menu seasonally to reflect the flavors found at each time of the year. By respecting the seasonality of the harvest, we are able to focus on each ingredient at its peak. This natural diversity allows us to prepare food simply, letting the quality and vibrant flavor of each ingredient shine. We harvest many of these ingredients from our garden at The Farmers Fields near Vinnitsya.</p>
                 </div>     
             </article>
-            <section class="content_block menus">
-                <h2 class="menus_head" id="menus">Menus</h2>
+            <section class="content_block" id="menus">
+                <h2 class="menus_head">Menus</h2>
                 <div class="menus_tabs">
                     <div class="menus_container" id="ukr_cousine">
                         <input type="radio" id="ukr_show" name="menus_select" checked />
@@ -208,7 +209,24 @@
                         <div class="tables"></div>
                     </div> 
                 </div>                            
-            </section> 
+            </section>
+            <section class="content_block"  id="gallery">
+                <h2 class="gallery_head">Gallery</h2>
+                <div class="gallery_tabs">
+                    <div class="gallery_container" id="dishes">
+                        <input type="radio" id="dishes_show" name="gallery_select" checked />
+                        <label class="gallery_title" for="dishes_show">Dishes</label>                        
+                        <div class="gallery_block" id="dishes_pics">
+                        </div>
+                    </div>
+                    <div class="gallery_container" id="event">
+                        <input type="radio" id="event_show" name="gallery_select" />
+                        <label class="gallery_title" for="event_show">Events</label>                        
+                        <div class="gallery_block" id="event_pics"> 
+                        </div>
+                    </div> 
+                </div>
+            </section>      
         </section>                   
     </main>
     <footer>
@@ -227,5 +245,6 @@
     <script src="js/slider.js"></script>
     <script src="js/menus.js"></script>
     <script src="js/reservation.js"></script>
+    <script src="js/gallery.js"></script>
 </body>
 </html>  

@@ -1,24 +1,24 @@
-.menus_head {
+.gallery_head {
     font: 700 1.6rem Arial;
     text-align: center;
 }
-.menus_tabs {
+.gallery_tabs {
     position: relative;
     padding-top: 20px;    
 }
-.menus_container, .menus_title {
+.gallery_container, .gallery_title {
     display: inline-block;
 }
-.menus_title {
+.gallery_title {
     background-color: #ccc;
-    width: 200px;
+    width: 320px;
     padding: 10px 0 10px;
     text-align: center;
     border: 1px solid black;
     border-bottom: none;
     font-size: 1.2rem;
-} 
-.menus_block {
+}
+.gallery_block {
     position: absolute;
     border: 1px solid black;
     padding: 10px;
@@ -26,32 +26,24 @@
     width: calc(100% - 20px);
     display: none;
 }   
-.menus_container :checked + .menus_title {
+.gallery_container :checked + .gallery_title {
     position: relative;
     background-color: #fff;
     top: 1px;
     z-index: 1; 
-    font-weight: 800;
+    font-weight: 800;    
 }
-.menus_container :checked ~ .menus_block {
-    display: block;
+.gallery_container :checked ~ .gallery_block {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: wrap;
 }
-.menus_container input[type="radio"] { 
+.gallery_container input[type="radio"] { 
     display: none;
 }
-
-.menus_item {
-    position: relative;
-    padding: 20px 10px 2px 0;
-    border-bottom: 1px dashed black;
-}
-.dish, .price {
-    display: inline-block;
-}
-.dish_name {
-    font-weight: 600;
-}
-.price {
-    position: absolute;
-    right: 0;
+.gallery_item {
+    width: 300px;
+    height: 300px;
+    border: 1px solid rgb(192, 170, 151);
+    margin: 5px;
 }
