@@ -3,6 +3,8 @@ const eur_menus = JSON.parse(localStorage.getItem('eur_menus'));
 const kids_menus = JSON.parse(localStorage.getItem('kids_menus'));
 const drink_menus = JSON.parse(localStorage.getItem('drink_menus'));
 
+const radios = document.getElementsByName('menus_select');
+
 function fill(menus, target) {
     const container = document.getElementById(target);
     let menus_array = [];
@@ -57,7 +59,6 @@ btnName.addEventListener('click', sortByName);
 //btnName.addEventListener('click', sortByPrice);
 
 function sortByName() {
-    let radios = document.getElementsByName('menus_select');
     let srchId;
     for (let i=0; i<radios.length; i++) {
         if (radios[i].checked ) {
@@ -77,7 +78,22 @@ function sortByName() {
 }
 
 function reverseByName() {
+    let srchId;
+    for (let i=0; i<radios.length; i++) {
+        if (radios[i].checked ) {
+            srchId = radios[i].nextElementSibling.nextElementSibling.id;
+        }
+    }    
+    let newArray = [];
+    
+    setArray(srchId, newArray); 
+    newArray.sort(compareName).reverse();
 
+    clearMenus(srchId);
+    fillFromArray(srchId, newArray);
+
+    btnName.removeEventListener('click', reverseByName);
+    btnName.addEventListener('click', sortByName); 
 }
 
 function setArray(objName, array) {
