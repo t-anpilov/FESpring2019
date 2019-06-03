@@ -48,13 +48,18 @@
     margin: 5px;
 }
 .pagination {
-    flex-basis: 75%;
+    flex-basis: 100%;
     display: flex;
     justify-content: center;
 
 }
 .page_num {
-    border: 1px solid lightslategray;
+    /*border: 1px solid lightslategray;*/
     margin: 5px;
     padding: 3px 5px;
+    cursor: pointer;
+}
+.active {
+    background-color: rgb(158, 158, 190);
+    cursor: default;
 }
