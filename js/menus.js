@@ -9,32 +9,7 @@ function fill(menus, target) {
     for (key in menus) {
         menus_array.push(menus[key]);
     }
-    for (let i=0; i<menus_array.length; i++) {
-        let menu = document.createElement('div');
-        menu.classList.add('menus_item');
-        
-        let dish = document.createElement('div');
-        dish.classList.add('dish');
-        
-        let name = document.createElement('span');
-        name.classList.add('dish_name');
-        name.innerHTML = menus_array[i].dish_name + '&nbsp;';
-        
-        let details = document.createElement('span');
-        details.classList.add('dish_details');
-        details.innerHTML = menus_array[i].dish_details;
-
-        dish.appendChild(name);
-        dish.appendChild(details);
-
-        let price = document.createElement('div');
-        price.classList.add('price');
-        price.innerHTML = menus_array[i].price + '&nbsp;' + '&#8372;';
-
-        menu.appendChild(dish);
-        menu.appendChild(price);
-        container.appendChild(menu);
-    }    
+    fillFromArray(container.id, menus_array);
 }
 
 fill(ukr_menus, 'ukr_menus');
@@ -73,4 +48,90 @@ function openTab(event) {
         var elemId = event.target.dataset.id;
         document.getElementById(elemId).checked = true;        
     }
+}
+
+var btnName = document.getElementById('sort_name');
+var btnPrice = document.getElementById('sort_price');
+
+btnName.addEventListener('click', sortByName);
+//btnName.addEventListener('click', sortByPrice);
+
+function sortByName() {
+    let radios = document.getElementsByName('menus_select');
+    let srchId;
+    for (let i=0; i<radios.length; i++) {
+        if (radios[i].checked ) {
+            srchId = radios[i].nextElementSibling.nextElementSibling.id;
+        }
+    }    
+    let newArray = [];
+    
+    setArray(srchId, newArray); 
+    newArray.sort(compareName);
+
+    clearMenus(srchId);
+    fillFromArray(srchId, newArray);
+
+    btnName.removeEventListener('click', sortByName);
+    btnName.addEventListener('click', reverseByName); 
+}
+
+function reverseByName() {
+
+}
+
+function setArray(objName, array) {
+    let obj = JSON.parse(localStorage.getItem(objName));        
+    for (key in obj) {
+        array.push(obj[key]);
+    }
+    return array;
+} 
+
+function compareName(data1, data2) {
+    if (data1.dish_name.toLowerCase() < data2.dish_name.toLowerCase()) {
+        return -1;
+    } else if (data1.dish_name.toLowerCase() > data2.dish_name.toLowerCase()) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+
+function clearMenus(id) {
+    let elemsContainer = document.getElementById(id);
+    while (elemsContainer.children.length != 0) {
+        elemsContainer.removeChild(elemsContainer.lastChild);
+    }
+}
+
+function fillFromArray(id, array) {
+    let elemsContainer = document.getElementById(id);
+    for (let i=0; i<array.length; i++) {
+        let menu = document.createElement('div');
+        menu.classList.add('menus_item');
+        
+        let dish = document.createElement('div');
+        dish.classList.add('dish');
+        
+        let name = document.createElement('span');
+        name.classList.add('dish_name');
+        name.innerHTML = array[i].dish_name + '&nbsp;';
+        
+        let details = document.createElement('span');
+        details.classList.add('dish_details');
+        details.innerHTML = array[i].dish_details;
+
+        dish.appendChild(name);
+        dish.appendChild(details);
+
+        let price = document.createElement('div');
+        price.classList.add('price');
+        price.innerHTML = array[i].price + '&nbsp;' + '&#8372;';
+
+        menu.appendChild(dish);
+        menu.appendChild(price);
+        elemsContainer.appendChild(menu);
+    }    
 }

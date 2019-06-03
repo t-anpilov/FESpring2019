@@ -65,5 +65,3 @@ function clearPage(page) {
         picsContainer.removeChild(picsContainer.lastChild);
     }
 }
-
-function addActive() {}
