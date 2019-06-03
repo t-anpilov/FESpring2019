@@ -56,15 +56,10 @@ var btnName = document.getElementById('sort_name');
 var btnPrice = document.getElementById('sort_price');
 
 btnName.addEventListener('click', sortByName);
-//btnName.addEventListener('click', sortByPrice);
+btnPrice.addEventListener('click', sortByPrice);
 
 function sortByName() {
-    let srchId;
-    for (let i=0; i<radios.length; i++) {
-        if (radios[i].checked ) {
-            srchId = radios[i].nextElementSibling.nextElementSibling.id;
-        }
-    }    
+    let srchId = getId();
     let newArray = [];
     
     setArray(srchId, newArray); 
@@ -74,16 +69,12 @@ function sortByName() {
     fillFromArray(srchId, newArray);
 
     btnName.removeEventListener('click', sortByName);
-    btnName.addEventListener('click', reverseByName); 
+    btnName.addEventListener('click', reverseByName);
+    btnName.innerHTML = 'Sort by name &#8593;'
 }
 
 function reverseByName() {
-    let srchId;
-    for (let i=0; i<radios.length; i++) {
-        if (radios[i].checked ) {
-            srchId = radios[i].nextElementSibling.nextElementSibling.id;
-        }
-    }    
+    let srchId = getId(); 
     let newArray = [];
     
     setArray(srchId, newArray); 
@@ -93,7 +84,46 @@ function reverseByName() {
     fillFromArray(srchId, newArray);
 
     btnName.removeEventListener('click', reverseByName);
-    btnName.addEventListener('click', sortByName); 
+    btnName.addEventListener('click', sortByName);
+    btnName.innerHTML = 'Sort by name &#8595;' 
+}
+
+function sortByPrice() {
+    let srchId = getId();  
+    let newArray = [];
+    
+    setArray(srchId, newArray); 
+    newArray.sort(compareNum);
+
+    clearMenus(srchId);
+    fillFromArray(srchId, newArray);
+
+    btnPrice.removeEventListener('click', sortByPrice);
+    btnPrice.addEventListener('click', reverseByPrice);
+    btnPrice.innerHTML = 'Sort by price &#8593;'
+}
+
+function reverseByPrice() {
+    let srchId = getId();  
+    let newArray = [];
+    
+    setArray(srchId, newArray); 
+    newArray.sort(compareNum).reverse();
+
+    clearMenus(srchId);
+    fillFromArray(srchId, newArray);
+
+    btnPrice.removeEventListener('click', reverseByPrice);
+    btnPrice.addEventListener('click', sortByPrice);
+    btnPrice.innerHTML = 'Sort by price &#8595;' 
+}
+
+function getId() {
+    for (let i=0; i<radios.length; i++) {
+        if (radios[i].checked ) {
+           return radios[i].nextElementSibling.nextElementSibling.id;
+        }
+    }
 }
 
 function setArray(objName, array) {
@@ -114,6 +144,9 @@ function compareName(data1, data2) {
     }
 }
 
+function compareNum(data1, data2) {
+   return (+data1.price) - (+data2.price)
+}
 
 function clearMenus(id) {
     let elemsContainer = document.getElementById(id);
