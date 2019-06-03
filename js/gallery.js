@@ -17,7 +17,9 @@ function addPics(srcArray, target, begin, amount) {
     for (let i=begin; i<(begin+amount); i++) {
         let image = document.createElement('img');
         image.classList.add('gallery_item');
-        image.setAttribute('src', srcArray[i]);
+        if (srcArray[i]) {
+            image.setAttribute('src', srcArray[i]);
+        } else { continue }    
         container.appendChild(image);
     }
 }
@@ -34,12 +36,20 @@ function addNextPics(event) {
     let target = event.target;
     if (target.tagName == 'BUTTON') {
         let pageName = target.parentElement.parentElement.id;
-        let number = +target.value;
+        let first = target.value;
+        let number;
         clearPage(pageName);
-        if (pageName == 'dishes_pics') {
-            addPics(dishesPics, pageName, number, 9);   
+        if (!isNaN(first)) {
+            first = +first;
+            number = 9;
         } else {
-            addPics(eventPics, pageName, number, 9);
+            first = 0;
+            number = 50;
+        }
+        if (pageName == 'dishes_pics') {
+            addPics(dishesPics, pageName, first, number);   
+        } else {
+            addPics(eventPics, pageName, first, number);
         }
         let btns = target.parentElement.children;
         for (let i=0; i<btns.length; i++) {
@@ -55,3 +65,5 @@ function clearPage(page) {
         picsContainer.removeChild(picsContainer.lastChild);
     }
 }
+
+function addActive() {}
