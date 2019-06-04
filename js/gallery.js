@@ -86,8 +86,7 @@ underGall.style.paddingTop = gallHeight + 'px';
 var radioGall = document.getElementsByName('gallery_select');
 for (let i=0; i<radioGall.length; i++) {
     radioGall[i].addEventListener('change', (event) => {
-        gallHeight = event.target.nextElementSibling.nextElementSibling.offsetHeight;
-        console.log(event.target.nextElementSibling.nextElementSibling.offsetHeight);
+        gallHeight = event.target.nextElementSibling.nextElementSibling.offsetHeight;        
         underGall.style.paddingTop = gallHeight + 'px';
     });
 }

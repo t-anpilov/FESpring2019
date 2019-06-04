@@ -1,6 +1,9 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
+.light {
+    background-color: lightcoral;
+}
 /*___________HEADER______________*/
 header {
     width: 100%;
@@ -31,7 +34,7 @@ header:before {
     transition: background-image 0.4s ease-in-out;     
 }
 .logo {
-    flex-basis: 15%;
+    flex-basis: 17.5%;
     height: 160px;
     display: flex;  
 }
@@ -41,7 +44,7 @@ header:before {
     margin: auto;
 }
 .menu_top {
-    flex-basis: 70%;
+    flex-basis: 65%;
     height: 120px;
     display: flex; 
     justify-content: center;
@@ -87,7 +90,7 @@ header:before {
     white-space: nowrap;
 }
 .searching {
-    flex-basis: 15%;
+    flex-basis: 17.5%;
     margin-top: 40px;
 }
 .srch_btn {
@@ -160,7 +163,7 @@ header address {
     flex-basis: 30%;
     text-align: center;
 }
-.down{
+.down {
     flex-basis: 100%;
 }
 #arrow {
@@ -357,7 +360,7 @@ footer{
     align-items: flex-end;
     color: white;
 }
-.footer_contacts, .sharing, .cr {
+.footer_contacts, .foot_logo, .cr {
     flex-basis: 30%;   
 }
 .footer_contacts {
@@ -371,8 +374,4 @@ footer{
     font-size: 0.9rem;
     text-align: right;
     padding-bottom: 10px;
-}
-
-.light {
-    background-color: lightcoral;
 }

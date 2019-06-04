@@ -1,0 +1,102 @@
+@media only screen and (max-width: 1024px) {
+    header hgroup {
+        padding: 120px 0 15px;
+    } 
+    header address {
+        margin: 15px auto 15px;
+        flex-basis: 75%;
+        font: 600 1.2rem Arial;
+    }
+    main {
+        width: 80%;
+        margin: 0 8% 0 12%;
+    }
+    .vertical_menu a {
+        font-size: 15px;
+    } 
+    .vertical_menu > li:hover #menus_types {
+        height: 172px;
+    }
+    .vertical_menu > li:hover #gallery_nav {
+        height: 85px;
+    }
+    .gallery_item {
+        width: 240px;
+        height: 240px;
+        margin: 10px 4px;
+    }
+    .menus_title {
+        display: inline-block;
+        width: 185px;
+        padding: 8px 0 8px;
+    }
+    .menus_container :checked + .menus_title {
+        font-weight: 700;
+    }    
+}
+@media only screen and (max-width: 800px) {
+    .logo { 
+        height: 100px;
+    }
+    .menu_container {
+        flex-basis: 90%;
+    }
+    .srch { 
+        width: 55%;
+    }
+    .srch_btn {
+        display: inline-block;
+        padding: 2px;
+        width: 40%;  
+    }    
+    header hgroup {
+        padding: 60px 0 5px;
+    } 
+    header address {
+        margin: 10px auto 15px;
+        flex-basis: 90%;
+        font: 600 1.05rem Arial;
+    }
+    main {
+        width: 93%;
+        margin: 0 auto 0;
+    }
+    nav.menu_side {
+        display: none;
+    }
+    .gallery_item {
+        width: 220px;
+        height: 220px;
+        margin: 10px 2px;
+    }
+    .menus_title {
+        width: 180px;
+        padding: 5px 0 5px;
+        font-size: 1.1rem;
+    }
+    .menus_container :checked + .menus_title {
+        font-weight: 700;
+    }
+    .mail_info {        
+        margin-top: 30px;
+        flex-flow: wrap;
+    }
+    .mail_item {
+        flex-basis: 75%;
+        padding-top: 10px;
+    } 
+    .contact_name {
+        font-size: 1.1rem;
+    }    
+    .footer_contacts, .foot_logo, .cr {
+        flex-basis: 30%;   
+    }
+    .footer_container {
+        width: 93%;
+        margin: 0 auto 0;
+    }
+    .footer_contacts, .cr {
+        flex-basis: 35%;   
+    } 
+
+}
