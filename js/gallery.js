@@ -83,5 +83,13 @@ for (let i=0; i<galleryElems.length; i++) {
 var underGall = document.getElementsByClassName('contacts')[0];
 underGall.style.paddingTop = gallHeight + 'px';
 
+var radioGall = document.getElementsByName('gallery_select');
+for (let i=0; i<radioGall.length; i++) {
+    radioGall[i].addEventListener('change', (event) => {
+        gallHeight = event.target.nextElementSibling.nextElementSibling.offsetHeight;
+        console.log(event.target.nextElementSibling.nextElementSibling.offsetHeight);
+        underGall.style.paddingTop = gallHeight + 'px';
+    });
+}
 
 
