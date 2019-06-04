@@ -375,3 +375,12 @@ footer{
     text-align: right;
     padding-bottom: 10px;
 }
+.foot_logo {
+    display: flex;
+    height: 60px;  
+}
+.logofoot_img {
+    display: block;
+    height:  50%;
+    margin: auto;
+}
