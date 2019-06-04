@@ -84,6 +84,9 @@
     .mail_item {
         flex-basis: 75%;
         padding-top: 10px;
+    }
+    .tab_num {
+        font-size: 0.9rem;
     } 
     .contact_name {
         font-size: 1.1rem;

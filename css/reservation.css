@@ -1,4 +1,5 @@
 .reserv_background {
+    margin-top: 30px;
     background-image: url(../img/restoran_big_1200x444.jpg);
     background-repeat: no-repeat;
     background-position: center;
@@ -66,13 +67,11 @@
 }
 .area {
     width: 16.6%;
-    height: 20%;        
+    height: 20%;
+    display: flex;        
 }
 .tab_num {
-    display: block;
-    text-align: center;    
-    height: 20%;
-    margin: 40% 0 40%;
+    margin: auto;
     color: rgb(110, 107, 104);
 }
 .table{
