@@ -27,7 +27,7 @@ function searchPrase() {
     } 
 
     for (let i=0; i<elems.length; i++) {
-        if ( (elems[i].children.length == 0) && (elems[i].textContent) ) {
+        if ( (elems[i].children.length == 0) && (elems[i].textContent) && (elems[i].tagName != 'A')) {
             simpleElems.push(elems[i]);
         } 
     } 

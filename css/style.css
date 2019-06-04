@@ -33,11 +33,12 @@ header:before {
 .logo {
     flex-basis: 15%;
     height: 160px;
+    display: flex;  
 }
 .logo_img {
     display: block;
-    width: 100%;
-    margin: 10px auto 10px;
+    width: 80%;
+    margin: auto;
 }
 .menu_top {
     flex-basis: 70%;

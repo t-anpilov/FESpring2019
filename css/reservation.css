@@ -1,3 +1,9 @@
+.reserv_background {
+    background-image: url(../img/restoran_big_1200x444.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 .reserv_head {
     font: 700 1.6rem Arial;
     text-align: center;
