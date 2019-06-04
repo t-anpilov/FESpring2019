@@ -24,14 +24,17 @@ function searchPrase() {
 
     if (srchPhr) {
         let regexp = new RegExp(srchPhr, 'ig');
+        let res = false;
         for (let i=0; i<simpleElems.length; i++) {            
             var result = simpleElems[i].textContent.match(regexp);
             if (result) {
                 simpleElems[i].innerHTML = simpleElems[i].innerHTML.replace(regexp, () => {
                     return '<span class="light">' + result[0] + '</span>'
-                });                
+                });
+                res = true;                
             }
         }
+        if (!res) alert('there are no mathes in current search');  
     } else { 
         alert('type phrase to search, that consits of more than two symbols');             
     }
