@@ -35,7 +35,7 @@ var radioBtns = document.getElementsByName('menus_select');
 for (let i=0; i<radioBtns.length; i++) {
     radioBtns[i].addEventListener('change', () => {
         height = radioBtns[i].nextElementSibling.nextElementSibling.offsetHeight;
-        upper.style.paddingTop = height + 'px';
+        lower.style.paddingTop = height + 'px';
     });
 }
 

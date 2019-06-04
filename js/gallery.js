@@ -67,14 +67,26 @@ function clearPage(page) {
     }
 }
 
+
+
 let galleryElems = document.getElementsByClassName('gallery_block');
 let gallHeight = 0;
+
 
 for (let i=0; i<galleryElems.length; i++) {
     if (gallHeight < galleryElems[i].offsetHeight) {
         gallHeight = galleryElems[i].offsetHeight;
     }
 }
+
+var gallBtns = document.getElementsByClassName('view_all');
+for (let i=0; i<gallBtns.length; i++) {
+        gallBtns[i].addEventListener('click', changePagdding);
+    }
+
+function changePagdding() {
+    gallHeight = 2400;
+} 
 
 const underGall = document.getElementsByClassName('contacts')[0];
 underGall.style.paddingTop = gallHeight + 'px';
