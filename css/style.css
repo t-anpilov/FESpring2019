@@ -288,3 +288,7 @@ footer{
     text-align: right;
     padding-bottom: 10px;
 }
+
+.light {
+    background-color: lightcoral;
+}

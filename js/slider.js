@@ -12,9 +12,9 @@ const imgArray = [
     'url("img/slider/slide-6.jpg")',
 ];
 
-arrow.addEventListener('click', scrollTo);
+arrow.addEventListener('click', scrollScreen);
 
-function scrollTo() {
+function scrollScreen() {
     var scrollStep = newTop.offsetTop / 30;
     let i = 0;
     scrollInterval = setInterval(()=> {
