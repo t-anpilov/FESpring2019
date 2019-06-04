@@ -78,8 +78,35 @@ function changeStatus(){
     var begin = document.getElementById('begin_time').value;
     var duration = +document.getElementById('timing').value;
     var date = document.getElementById('reserv_date').value;
-    var client_name = document.getElementById('client_name').value;
-    var phone = document.getElementById('phone').value;    
+    var client_name;
+    var phone; 
+    var input_name = document.getElementById('client_name');
+    var input_phone = document.getElementById('phone');
+
+    if (!input_name.value || input_name.value.length < 2) {
+        input_name.classList.add('light_it');
+        input_name.value = '';
+        input_name.setAttribute('placeholder', 'enter value');
+    } else {
+        client_name = input_name.value;
+    }
+
+    if (!input_phone.value) {
+        input_phone.classList.add('light_it');
+        input_phone.value = '';
+        input_phone.setAttribute('placeholder', 'enter value');
+    } else if (isNaN(+input_phone.value)) {
+        input_phone.classList.add('light_it');
+        input_phone.value = '';
+        input_phone.setAttribute('placeholder', 'type only numbers');
+    } else if (input_phone.value.length != 10) {
+        input_phone.classList.add('light_it');
+        input_phone.value = '';
+        input_phone.setAttribute('placeholder', 'type correct length');
+    } else {
+        phone = input_phone.value;
+    } 
+    
     if ( checkDate(date, begin) ) {        
         if (begin && duration && client_name && phone && date) {
             var index;
@@ -101,30 +128,23 @@ function changeStatus(){
                     alert( 'Sorry, but restourant will be closed until this time.' );                    
                     return;                      
                 }                   
-            } 
-        this.removeEventListener('click', changeStatus);
-        this.classList.add('ready'); 
-
-        var message = (
-            'reservated table #' + (+n+1) +
-            ' on ' + date +
-            ' from ' + TableOccup.data[n][index][date][begin].from +
-            ' to ' + TableOccup.data[n][index][date][+begin + (duration-1)].to );
-        document.getElementsByClassName('message')[0].textContent = message;
-        var inputs = document.getElementsByClassName('input_field');
-        for (var i=0; i<inputs.length; i++){
-            inputs[i].classList.remove('light_it');
-            inputs[i].removeAttribute('placeholder');
-        }  
-        } else {             
-            var inputs = document.getElementsByClassName('input_field');
-            for (var i=0; i<inputs.length; i++) {
-                if (!inputs[i].value) { 
-                    inputs[i].classList.add('light_it');
-                    inputs[i].setAttribute('placeholder', 'enter value');
-                }
             }
-        } 
+             
+            this.removeEventListener('click', changeStatus);
+            this.classList.add('ready'); 
+
+            var message = (
+                'reservated table #' + (+n+1) +
+                ' on ' + date +
+                ' from ' + TableOccup.data[n][index][date][begin].from +
+                ' to ' + TableOccup.data[n][index][date][+begin + (duration-1)].to );
+            document.getElementsByClassName('message')[0].textContent = message;
+            var inputs = document.getElementsByClassName('input_field');
+            for (var i=0; i<inputs.length; i++){
+                inputs[i].classList.remove('light_it');
+                inputs[i].removeAttribute('placeholder');
+            }
+        }        
     } else {
         document.getElementById('reserv_date').classList.add('light_it'); 
         document.getElementById('reserv_date').setAttribute('placeholder', 'enter value');
