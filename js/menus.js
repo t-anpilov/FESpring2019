@@ -28,8 +28,8 @@ for (let i=0; i<elems.length; i++) {
     }
 }
 
-var upper = document.getElementsByClassName(' reserv_block')[0];
-upper.style.paddingTop = height + 'px';
+var lower = document.getElementsByClassName('reserv_block')[0];
+lower.style.paddingTop = height + 'px';
 
 var radioBtns = document.getElementsByName('menus_select');
 for (let i=0; i<radioBtns.length; i++) {

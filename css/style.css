@@ -260,7 +260,47 @@ aside {
     padding: 20px 20px 0 0;
 }
 
-/*______________________FOOTER______________*/
+/*_____________CONTACTS__________________*/
+
+.contacts {
+    font-size: 1.2rem;
+}
+.section_head {
+    font: 700 1.6rem Arial;
+    text-align: center;
+    padding-top: 30px; 
+}
+.mail_info {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 60px;
+}
+.mail_item {
+    text-align: center;
+}
+.contact_name {
+    padding-top: 8px;
+    font: 600 1.3rem Arial;
+    border-bottom: 2px solid black;
+    display: inline-block;
+}
+.phone_item {
+    margin-top: 45px;
+    text-align: center;
+}
+.time_item {
+    margin-top: 20px;
+    text-align: center;
+}
+.place_info {
+    margin-top: 30px;
+    text-align: center;
+}
+.place_text {    
+    font: 600 1.3rem Arial;
+}
+
+/*_______________FOOTER__________________*/
 footer{
     margin-top: 25px;
     background-color: #3d3d3d;
@@ -273,10 +313,10 @@ footer{
     align-items: flex-end;
     color: white;
 }
-.contacts, .sharing, .cr {
+.footer_contacts, .sharing, .cr {
     flex-basis: 30%;   
 }
-.contacts {
+.footer_contacts {
     padding-top: 10px;
     font: 500 0.9rem sans-serif;
 }

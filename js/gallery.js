@@ -19,6 +19,7 @@ function addPics(srcArray, target, begin, amount) {
         image.classList.add('gallery_item');
         if (srcArray[i]) {
             image.setAttribute('src', srcArray[i]);
+            image.setAttribute('alt', target);
         } else { continue }    
         container.appendChild(image);
     }
@@ -65,3 +66,15 @@ function clearPage(page) {
         picsContainer.removeChild(picsContainer.lastChild);
     }
 }
+
+let galleryElems = document.getElementsByClassName('gallery_block');
+let gallHeight = 0;
+
+for (let i=0; i<galleryElems.length; i++) {
+    if (gallHeight < galleryElems[i].offsetHeight) {
+        gallHeight = galleryElems[i].offsetHeight;
+    }
+}
+
+const underGall = document.getElementsByClassName('contacts')[0];
+underGall.style.paddingTop = gallHeight + 'px';
